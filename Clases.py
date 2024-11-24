@@ -30,7 +30,7 @@ class Posicion (Enum):
   HORIZONTAL = 2
 
 class Carta:
-  def __init__(self, nombre, descripcion, posicion,orientacion): #constructor
+  def __init__(self, nombre, descripcion, posicion,orientacion): #jdas
     self.__nombre = nombre #__ es para acceso privado
     self.__descripcion = descripcion
     self.__posicion = posicion
