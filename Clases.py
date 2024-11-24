@@ -148,8 +148,7 @@ class Tablero:
 
 
 class Jugador:
-  def __init__(self,nombre,deck):m
-  sakldsajdka
+  def __init__(self,nombre,deck):
     self.__nombre = nombre
     self.__deck = deck
     self.__puntos = 4000
