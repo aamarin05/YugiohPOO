@@ -1,5 +1,6 @@
 from enum import (Enum)
 from cartasCreadas import cartas
+import random as rd
 
 class TipoAtributo (Enum):
   OSCURIDAD = 1
@@ -149,6 +150,26 @@ class Deck:
     return self.__cartas
   def setCartas (self, cartas):
     self.__cartas = cartas
+  
+  def crearDeck(self,archivo):
+    l_mons=[]
+    l_mag=[]
+    l_tram=[]
+    archivo= open(archivo,'r')
+    for linea in archivo.strip().split(','):
+      nombre,descripcion,tipodecarta,posicion,orientacion,ataque,defensa,tipomonstruo,tipoatributo= linea
+      if(tipodecarta==TipoCarta.MONSTRUO):
+        c= CartaMonstruo(nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,defensa,ataque)
+        l_mons.append(c)
+      if(tipodecarta==TipoCarta.MAGICA):
+        c= CartaMagica(nombre, descripcion, posicion, orientacion, ataque, defensa)
+        l_mag.append(c)
+      if(tipodecarta==TipoCarta.TRAMPA):
+        c= CartaTrampa(nombre, descripcion, posicion, orientacion,tipoatributo)
+        l_tram.append(c)
+      archivo.close()
+      deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+      return deck
 
 class Tablero:
   def __init__(self, jugadores, cartas__monstruo, cartas_tram_o_mag):
