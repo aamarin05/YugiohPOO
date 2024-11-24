@@ -1,4 +1,5 @@
 from enum import (Enum)
+from cartasCreadas import cartas
 
 class TipoAtributo (Enum):
   OSCURIDAD = 1
@@ -185,4 +186,7 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
+
+
+
 
