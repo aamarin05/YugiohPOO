@@ -164,4 +164,21 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
-print("hola mundo que tal")
+    
+  # Metodo esDerrotado
+  # El jugador es derrotado si sus punto llegan a cero y si no tiene más cartas en el tablero
+  def esDerrotado(self):
+    if self.__puntos <= 0:
+      return True
+    elif len(self.__deck.getCartas()) == 0: #cuanta el numero de cartas que hay en el deck
+      return True
+    else:
+      return False
+    #Si lo anterior es falso quiere decir que el juagado aún no esta derrotado
+
+#Fase tomar carta
+turnos = 0
+deck = []
+jugador1 = Jugador("Pablito", deck)
+juagor2_maquina = Jugador("Maquina", deck)
+while (jugador1.esDerrotado() or juagor2_maquina.esDerrotado()):
