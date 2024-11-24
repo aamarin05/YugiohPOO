@@ -165,3 +165,5 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
+    
+  var = 1
