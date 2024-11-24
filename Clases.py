@@ -164,3 +164,4 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
+print("hola mundo")
