@@ -164,7 +164,6 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
-    
   # Metodo esDerrotado
   # El jugador es derrotado si sus punto llegan a cero y si no tiene más cartas en el tablero
   def esDerrotado(self):
@@ -181,4 +180,4 @@ turnos = 0
 deck = []
 jugador1 = Jugador("Pablito", deck)
 juagor2_maquina = Jugador("Maquina", deck)
-while (jugador1.esDerrotado() or juagor2_maquina.esDerrotado()):
+# while (jugador1.esDerrotado() or juagor2_maquina.esDerrotado()):
