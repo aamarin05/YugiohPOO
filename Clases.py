@@ -119,32 +119,45 @@ class CartaTrampa (Carta):
   def setAtributo (self,atributo):
       self.__atributo = atributo
 
-
 class Deck:
-  def __init__(self,cartas):
-    self.__cartas = cartas
-  def getCartas (self):
-    return self.__cartas
-  def setCartas (self, cartas):
-    self.__cartas = cartas
+  def crearDeck(self,archivo):
+    l_mons=[]
+    l_mag=[]
+    l_tram=[]
+    archivo= open(archivo,'r')
+    for linea in archivo.strip().split(','):
+      nombre,descripcion,tipodecarta,posicion,orientacion,ataque,defensa,tipomonstruo,tipoatributo= linea
+      if(tipodecarta==TipoCarta.MONSTRUO):
+        c= CartaMonstruo(nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,defensa,ataque)
+        l_mons.append(c)
+      if(tipodecarta==TipoCarta.MAGICA):
+        c= CartaMagica(nombre, descripcion, posicion, orientacion, ataque, defensa)
+        l_mag.append(c)
+      if(tipodecarta==TipoCarta.TRAMPA):
+        c= CartaTrampa(nombre, descripcion, posicion, orientacion,tipoatributo)
+        l_tram.append(c)
+      archivo.close()
+      deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+      return deck
 
 class Tablero:
-  def __init__(self, jugadores, cartas__monstruo, cartas_tram_o_mag):
-    self.__cartas__monstruo = cartas__monstruo
-    self.__cartas_tram_o_mag = cartas_tram_o_mag
-    self.__jugadores = jugadores
-  def getJugadores(self):
-    return self.__jugadores
-  def setJugadores(self, jugadores):
-    self.__jugadores = jugadores
-  def getCartasMonstruo(self):
-    return self.__cartas__monstruo
-  def set_espacio_m(self, cartas__monstruo):
-    self.__cartas__monstruo = cartas__monstruo
-  def getCartasTramOMag(self):
-    return self.__cartas_tram_o_mag
-  def setCartasTramOMag(self, cartas_tram_o_mag):
-    self.__cartas_tram_o_mag = cartas_tram_o_mag
+  def _init_(self):
+    self.cartas= []
+  def contar_cartas_tipo(self, tipo):
+    for carta in self.cartas:
+      return sum(isinstance(carta, tipo))
+  def agregarCarta(self,carta):
+    if (len(cartas)<=6):
+      if isinstance(carta,CartaMonstruo):
+        if self.contar_cartas_tipo(Monstruo) < 3:
+          self.cartas.append(carta)
+        elif isinstance(carta, (Magica, Trampa)):
+          if self.contar_cartas_tipo(Magica) + self.contar_cartas_tipo(Trampa) < 3:
+            self.cartas.append(carta)
+  def seleccionarCarta(self,nombre):
+    for c in self.cartas:
+      if (c.getNombre()==nombre):
+        return c
 
 
 class Jugador:
