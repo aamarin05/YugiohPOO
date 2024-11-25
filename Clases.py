@@ -118,7 +118,6 @@ class CartaTrampa (Carta):
       return self.__atributo
   def setAtributo (self,atributo):
       self.__atributo = atributo
-
 class Deck:
   def crearDeck(self,archivo):
     l_mons=[]
@@ -177,4 +176,3 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
-print("hola mundo que tal")
