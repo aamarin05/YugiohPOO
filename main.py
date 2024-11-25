@@ -138,7 +138,7 @@ class Deck:
    
 class Tablero:
   def _init_(self):
-    self.cartas= []
+    self.__cartas= []
 
 
 
@@ -168,11 +168,11 @@ class Jugador:
     if (len(self.__tablero)<=6):
       if isinstance(carta,CartaMonstruo):
         if self.contar_cartas_tipo(CartaMonstruo) < 3:
-          self.__tablero.append(carta)
+          self.__tablero.__cartas.append(carta)
           self.__mano.remove(carta)
         elif isinstance(carta, (CartaMagica, CartaTrampa)):
           if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
-            self.__tablero.append(carta)
+            self.__tablero.__cartas.append(carta)
             self.__mano.remove(carta)
   def seleccionarCartaTablero(self,nombre):
     for c in self.__tablero:
