@@ -223,31 +223,6 @@ jugador1 = Jugador("Pablito", deck)
 juagor2_maquina = Jugador("Maquina", deck)
 # while (jugador1.esDerrotado() or juagor2_maquina.esDerrotado()):
 
-
-
-  def Jugar(self):
-    print("Bienvenidos al juego de Yugioh")
-    print("Fase principal")
-    print(f"Mano del jugador: {jugador.getMano()}")
-    print("Crea tu tablero")
-    while (jugador.getmano()>0):
-      carta = input("Escriba el numero de la carta para agregarla al tablero: ")
-      modoCarta = ("1.Modo ataque, 2. Modo defensa")
-      if modoCarta == "1":
-        carta.modoAtaque()
-      if modoCarta == "2":
-        carta.modoDefensa()
-      jugador.getTablero.agregarCarta(carta)
-    for carta in maquina.mano:
-      maquina.tablero.agregarCarta(carta)
-    
-    inicio = random.choice(["Jugador", "Maquina"])
-    turnos = 1
-    while (jugador.getPuntos > 0 and maquina.getPuntos > 0):
-      print (f"Turno {turnos}")
-      
-      turnos +=1
-
     
     
 
