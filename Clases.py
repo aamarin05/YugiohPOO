@@ -1,7 +1,5 @@
 from enum import (Enum)
-from cartasCreadas import cartas
 import random as rd
-
 class TipoAtributo (Enum):
   OSCURIDAD = 1
   LUZ = 2
@@ -9,6 +7,11 @@ class TipoAtributo (Enum):
   AGUA = 4
   FUEGO = 5
   VIENTO = 6
+
+class TipoCarta (Enum):
+  MONSTRUO = 1
+  MAGICA = 2
+  TRAMPA = 3
 
 class TipoMonstruo (Enum):
   L = 1 #Lanazador de Conjuros
@@ -27,7 +30,7 @@ class Posicion (Enum):
   HORIZONTAL = 2
 
 class Carta:
-  def __init__(self, nombre, descripcion, posicion,orientacion): #Constructor
+  def __init__(self, nombre, descripcion, posicion,orientacion): #jdas
     self.__nombre = nombre #__ es para acceso privado
     self.__descripcion = descripcion
     self.__posicion = posicion
@@ -56,8 +59,8 @@ class CartaMonstruo(Carta):
     super().__init__(nombre, descripcion, posicion,orientacion)
     self.__tipo = tipo
     self.__atributo = atributo
-    self.__defensa = defensa
-    self.__ataque = ataque
+    self._defensa = defensa
+    self._ataque = ataque
 
   def getTipo (self):
       return self.__tipo
@@ -68,13 +71,13 @@ class CartaMonstruo(Carta):
   def setAtributo (self,atributo):
       self.__atributo = atributo
   def getAtaque (self):
-      return self.__ataque
+      return self._ataque
   def setAtaque (self, ataque):
-      self.__ataque = ataque
-  def getDefensa (self):
-      return self.__defensa
+      self._ataque = ataque
+  def getDefena (self):
+      return self._defensa
   def setDefensa (self, defensa):
-      self.__defensa = defensa
+      self._defensa = defensa
     
   def cambiarPosicion(self,posicion):
       if self.__orientacion == Orientacion.ARRIBA:
@@ -83,58 +86,42 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ARRIBA
   def modoDefensa(self):
       self.__orientacion = Orientacion.ABAJO
-  def muere(self): #NOT SURE
-    return True
 
 class CartaMagica (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,ataque, defensa,tipo,carta_monstruo):
+  def __init__(self, nombre, descripcion, posicion, orientacion, ataque, defensa):
     super().__init__(nombre, descripcion, posicion, orientacion)
-    self.__tipo = tipo
-    self.__carta_montruo = carta_monstruo
-    self.__defensa = defensa
-    self.__ataque = ataque
-  
-  def getTipo (self):
-    return self.__tipo
+    self._defensa = defensa
+    self._ataque = ataque
+
   def getAtaque (self):
-    return self.__ataque
+    return self._ataque
   def setAtaque (self, ataque):
     self._ataque = ataque
   def getDefena (self):
-    return self.__defensa
+    return self._defensa
   def setDefensa (self, defensa):
-    self.__defensa = defensa
+    self._defensa = defensa
     
-  def usar (self,carta_monstruo):
-    if self.__tipo == carta_monstruo.getTipo():
-      if self.__defensa == 0:
-        nuevo_ataque = carta_monstruo.getAtaque() + self._ataque
-        carta_monstruo.setAtaque(nuevo_ataque)
-      if self.__ataque == 0:
-        nueva_defensa = carta_monstruo.getDefensa() + self.__defensa
-        carta_monstruo.setDefensa(nueva_defensa)
-  
-  def destruir (self,carta_monstruo):#NOT SURE
-    if carta_monstruo.muere():
-      return True
-
-  def __str__(self):
-    if self.__defensa == 0:
-      return f"{self.__nombre} , incrementa en {self._ataque} el ataque de monstruos de tipo {self.__tipo}"
-    if self.__ataque == 0:
-      return f"{self.__nombre} , incrementa en {self.defensa} la defensa de monstruos de tipo {self.__tipo}"
+  def incrementaAtaque (self, carta):
+    nuevo_ataque = carta.getAtaque + self._ataque
+    carta.setAtaque(nuevo_ataque)
+      
+  def incrementaDef (self, carta):
+    nueva_defensa = carta.getDefensa() + self._defensa
+    carta.setDefensa(nueva_defensa)
 
 class CartaTrampa (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,carta_monstruo):
+  def __init__(self, nombre, descripcion, posicion, orientacion,atributo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__atributo = atributo
-
   def getAtributo (self):
       return self.__atributo
   def setAtributo (self,atributo):
       self.__atributo = atributo
+
 from cartasCreadas import cartas
 class Deck:
+
   def crearDeck(self,archivo):
     l_mons=[]
     l_mag=[]
@@ -155,6 +142,7 @@ class Deck:
       deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
       return deck
 
+   
 class Tablero:
   def _init_(self):
     self.cartas= []
@@ -164,10 +152,10 @@ class Tablero:
   def agregarCarta(self,carta):
     if (len(cartas)<=6):
       if isinstance(carta,CartaMonstruo):
-        if self.contar_cartas_tipo(Monstruo) < 3:
+        if self.contar_cartas_tipo(CartaMonstruo) < 3:
           self.cartas.append(carta)
-        elif isinstance(carta, (Magica, Trampa)):
-          if self.contar_cartas_tipo(Magica) + self.contar_cartas_tipo(Trampa) < 3:
+        elif isinstance(carta, (CartaMagica, CartaTrampa)):
+          if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
             self.cartas.append(carta)
   def seleccionarCarta(self,nombre):
     for c in self.cartas:
@@ -176,10 +164,11 @@ class Tablero:
 
 
 class Jugador:
-  def __init__(self,nombre,deck):
+  def __init__(self,nombre,deck,tablero):
     self.__nombre = nombre
     self.__deck = deck
     self.__puntos = 4000
+    self.__tablero = tablero
   def getNombre(self):
     return self.__nombre
   def setNombre (self, nombre):
