@@ -119,27 +119,23 @@ class CartaTrampa (Carta):
   def setAtributo (self,atributo):
       self.__atributo = atributo
 
-from cartasCreadas import cartas
+<<<<<<< Updated upstream
+from cartasCreadas import listaCartasCreadas
+=======
+>>>>>>> Stashed changes
 class Deck:
-
-  def crearDeck(self,archivo):
+  def crearDeck(self):#crea lista de cartas
     l_mons=[]
     l_mag=[]
     l_tram=[]
-    archivo= open(archivo,'r')
-    for linea in archivo.strip().split(','):
-      nombre,descripcion,tipodecarta,posicion,orientacion,ataque,defensa,tipomonstruo,tipoatributo= linea
-      if(tipodecarta==TipoCarta.MONSTRUO):
-        c= CartaMonstruo(nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,defensa,ataque)
+    for c in listaCartasCreadas:
+      if isinstance(c,CartaMonstruo):
         l_mons.append(c)
-      if(tipodecarta==TipoCarta.MAGICA):
-        c= CartaMagica(nombre, descripcion, posicion, orientacion, ataque, defensa)
+      if isinstance(c,CartaMagica):
         l_mag.append(c)
-      if(tipodecarta==TipoCarta.TRAMPA):
-        c= CartaTrampa(nombre, descripcion, posicion, orientacion,tipoatributo)
+      if isinstance(c,CartaTrampa):
         l_tram.append(c)
-      archivo.close()
-      deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+      deck= rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
       return deck
 
    
