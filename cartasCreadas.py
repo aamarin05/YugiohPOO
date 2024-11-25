@@ -2,7 +2,7 @@ from main import CartaMonstruo, CartaMagica, CartaTrampa
 from main import TipoAtributo, TipoMonstruo, Orientacion, Posicion
 
 
-cartas = [
+listaCartasCreadas = [
     # Cartas de Monstruo (50 cartas)
     CartaMonstruo("Dragón Blanco de Ojos Azules", "Un dragón legendario", Posicion.VERTICAL, Orientacion.ABAJO, TipoMonstruo.D, TipoAtributo.LUZ, 2500, 3000),
     CartaMonstruo("Mago Oscuro", "Un mago experto", Posicion.VERTICAL, Orientacion.ABAJO, TipoMonstruo.L, TipoAtributo.OSCURIDAD, 2100, 2500),
