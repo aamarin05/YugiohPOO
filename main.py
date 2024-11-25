@@ -85,7 +85,6 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE
     return True
-  
   # Metodo atacar carta oponente
   def atacarCarta(self, carta_oponente): #retorna la diferencia de puntos de las dos cartas
     diferencia_puntos = 0
@@ -108,12 +107,14 @@ class CartaMonstruo(Carta):
       else: 
         diferencia_puntos = 0
 
+  def __str__(self):
+    return f"{self.__nombre}: {self.__descripcion} con ATQ:{self.__ataque} y DEF:{self.__defensa}"
 
 class CartaMagica (Carta):
   def __init__(self, nombre, descripcion, posicion, orientacion,ataque, defensa,tipo,carta_monstruo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__tipo = tipo
-    self.__carta_montruo = carta_monstruo
+    self.__carta_monstruo = carta_monstruo
     self.__defensa = defensa
     self.__ataque = ataque
   
@@ -143,66 +144,51 @@ class CartaMagica (Carta):
 
   def __str__(self):
     if self.__defensa == 0:
-      return f"{self.__nombre} , incrementa en {self._ataque} el ataque de monstruos de tipo {self.__tipo}"
+      return f"{self.__nombre} , incrementa en {self.__ataque} el ataque de monstruos de tipo {self.__tipo}"
     if self.__ataque == 0:
-      return f"{self.__nombre} , incrementa en {self.defensa} la defensa de monstruos de tipo {self.__tipo}"
+      return f"{self.__nombre} , incrementa en {self.__defensa} la defensa de monstruos de tipo {self.__tipo}"
 
 class CartaTrampa (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,carta_monstruo):
+  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,tipo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__atributo = atributo
+    self.__carta_monstruo = carta_monstruo
 
   def getAtributo (self):
       return self.__atributo
   def setAtributo (self,atributo):
       self.__atributo = atributo
-from cartasCreadas import cartas
+  def __str__(self):
+    return f"{self.__nombre} , detiene el ataque de un monstruo tipo {self.__carta_monstruo.getAtributo()}"
+
+from cartasCreadas import listaCartasCreadas
 class Deck:
-  def crearDeck(self,archivo):
+  def crearDeck(self):#crea lista de cartas
     l_mons=[]
     l_mag=[]
     l_tram=[]
-    archivo= open(archivo,'r')
-    for linea in archivo.strip().split(','):
-      nombre,descripcion,tipodecarta,posicion,orientacion,ataque,defensa,tipomonstruo,tipoatributo= linea
-      if(tipodecarta==TipoCarta.MONSTRUO):
-        c= CartaMonstruo(nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,defensa,ataque)
+    for c in listaCartasCreadas:
+      if isinstance(c,CartaMonstruo):
         l_mons.append(c)
-      if(tipodecarta==TipoCarta.MAGICA):
-        c= CartaMagica(nombre, descripcion, posicion, orientacion, ataque, defensa)
+      if isinstance(c,CartaMagica):
         l_mag.append(c)
-      if(tipodecarta==TipoCarta.TRAMPA):
-        c= CartaTrampa(nombre, descripcion, posicion, orientacion,tipoatributo)
+      if isinstance(c,CartaTrampa):
         l_tram.append(c)
-      archivo.close()
-      deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
-      return deck
+      deck= rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+    return deck
 
 class Tablero:
   def _init_(self):
-    self.cartas= []
-  def contar_cartas_tipo(self, tipo):
-    for carta in self.cartas:
-      return sum(isinstance(carta, tipo))
-  def agregarCarta(self,carta):
-    if (len(cartas)<=6):
-      if isinstance(carta,CartaMonstruo):
-        if self.contar_cartas_tipo(Monstruo) < 3:
-          self.cartas.append(carta)
-        elif isinstance(carta, (Magica, Trampa)):
-          if self.contar_cartas_tipo(Magica) + self.contar_cartas_tipo(Trampa) < 3:
-            self.cartas.append(carta)
-  def seleccionarCarta(self,nombre):
-    for c in self.cartas:
-      if (c.getNombre()==nombre):
-        return c
+    self.__cartas= []
 
 
 class Jugador:
-  def __init__(self,nombre,deck):
+  def __init__(self,nombre):
     self.__nombre = nombre
-    self.__deck = deck
+    self.__deck = Deck.crearDeck(self)
     self.__puntos = 4000
+    self.__tablero = Tablero()
+    self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
   def getNombre(self):
     return self.__nombre
   def setNombre (self, nombre):
@@ -215,16 +201,35 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
+  def getMano (self):
+    return self.__mano
+
+  def tomarCarta(self):
+    return self.__deck.pop()
+  def contar_cartas_tipo(self, tipo):
+    for carta in self.__mano:
+      return sum(isinstance(carta, tipo))
+  def agregarCartaTablero(self,carta):
+    if (len(self.__tablero)<=6):
+      if isinstance(carta,CartaMonstruo):
+        if self.contar_cartas_tipo(CartaMonstruo) < 3:
+          self.__tablero.__cartas.append(carta)
+          self.__mano.remove(carta)
+        elif isinstance(carta, (CartaMagica, CartaTrampa)):
+          if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
+            self.__tablero.__cartas.append(carta)
+            self.__mano.remove(carta)
+  def seleccionarCartaTablero(self,indice):
+    return self.__tablero()[indice]
 
 
 
 #Clase Juego 
 class Juego():
-  def __init__(self, Lista_tableros, l_jugadores, turnoJugador): 
-    self.__tableros = Lista_tableros 
-    self.__jugadores = l_jugadores
-    self.__turnoJuego = 0
-    self.__turnoJugador = turnoJugador # 0 para la persona y 1 para la maquina
+  def __init__(self, maquina, jugador): #donde las lista tableros y jugadores tienen 2 elementos
+    self.__maquina = maquina
+    self.__jugador = jugador
+    self.__turno = 0 # 0 para la persona y 1 para la maquina
   # def faseDeclararBatalla(self, carta_oponente):
     
   #   if self.__turno < 2: 
@@ -269,3 +274,97 @@ class Juego():
         if(carta_atacante is not None and carta_atacada is not None):
           if(carta_atacada.getPosicion() == Posicion.VERTICAL):
             diferencia_puntos = carta_atacada.atacarCarta()
+            
+  def faseDeclararBatalla(self, carta_oponente):
+    if self.__turno < 2: 
+      print("No se puede declarar batalla en el primer turno")
+    else: #El turno es igual a 2 o mayor
+      if(carta_oponente.posicion == Posicion.VERTICAL): #si es verdad, entonces quiere decir que esta en ataque
+        return False    # se comparan los puntos de ataque de la carta de ataque al la carta atacada
+    
+      # else: #Si es falso, quiere decir que esta en defensa
+  
+  
+
+
+
+
+  def Jugar(self):
+    print("Fase principal")
+    print(f"Mano del jugador: {self.__jugador.getMano()}")
+    print("Crea tu tablero")
+    while (self.__jugador.getMano()>0):
+      carta = input("Escriba el numero de la carta para agregarla al tablero: ")
+      modoCarta = input("1.Modo ataque, 2. Modo defensa. (1 o 2)")
+      if modoCarta == "1":
+        self.__jugador.getMano()[int(carta)].modoAtaque()
+      if modoCarta == "2":
+        self.__jugador.getMano()[int(carta)].modoDefensa()
+      self.__jugador.agregarCarta(carta)
+
+    for carta in self.__maquina.getMano():
+      self.__maquina.tablero.agregarCarta(carta)
+      
+    turnos = 1
+    pregunta
+    while (self.__jugador.getPuntos() > 0 and self.__maquina.getPuntos() > 0):
+      if turnos == 1:
+        print ("Turno 1") 
+        carta = self.__jugador.tomarCarta()
+        print(carta)
+        pregunta = input("Quieres colocar la carta en tablero (si/no)?")
+        if pregunta.lower() == "si":
+          self.__jugador.agregarCartaTablero(carta)
+        pregunta = ("¿Quieres activar una carta mágica o trampa? (si/no)")
+        if pregunta.lower == "si":
+          print(self.__jugador.getTablero())
+          indice = input("Ingresa el indice de la carta: ")
+          carta = self.__jugador.seleccionarCarta(int(indice+1))
+          indice = input("Ingrese el indice de la carta monstruo a mejorar: ")
+          if (isinstance(carta, CartaMagica)):
+            carta.usar()
+        carta = self.__maquina.robar_carta()
+        self.__maquina.agregarCartaTablero(carta)
+      print (f"Turno {turnos}")
+      carta = self.__jugador.tomarCarta()
+      print(carta)
+      pregunta = input("Quieres colocar la carta en tablero?")
+      if pregunta.lower() == "si":
+        self.__jugador.agregarCartaTablero(carta)
+      pregunta = input("¿Quieres activar una carta mágica o trampa?")
+      if pregunta.lower == "si":
+        print(self.__jugador.tablero)
+        indice = input("Ingresa el indice de la carta: ")
+        carta = self.__jugador.seleccionarCarta(int(indice+1))
+        indice = input("Ingrese el indice de la carta monstruo a mejorar: ")
+        if (isinstance(carta, CartaMagica)):
+          carta.usar()
+      pregunta = input("¿Quieres declarar batalla ?")
+      if pregunta.lower() == "si":
+        print(self.__jugador.getTablero())
+        indiceJugador = input("Ingrese indice de su carta montruo: ")
+        print(self.__maquina.getTablero())
+        indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
+        self.__jugador.getTablero[int(indice+1)].declararBatalla(self.__maquina.getTablero[int(indice+1)])
+      carta = self.__maquina.robar_carta()
+      self.__maquina.agregarCartaTablero(carta)
+      self.__maquina.getTablero[0].declararBatalla(self.__maquina.getTablero[0])
+      turnos +=1
+  
+
+
+class Maquina (Jugador):
+  def __init__(self):
+    super().__init__()
+    self.__deck = Deck.crearDeck(self)
+    self.__puntos = 4000
+    self.__tablero = Tablero()
+    self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
+
+if __name__ == "__main__":
+  print("Bienvenido al juego de Yugioh")
+  nombre = input ("Por favor, ingrese su nombre: ")
+  jugador = Jugador(nombre)
+  maquina = Maquina()
+  juego = Juego(jugador, maquina)
+  juego.jugar()
