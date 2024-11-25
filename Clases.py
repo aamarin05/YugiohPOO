@@ -119,10 +119,7 @@ class CartaTrampa (Carta):
   def setAtributo (self,atributo):
       self.__atributo = atributo
 
-<<<<<<< Updated upstream
 from cartasCreadas import listaCartasCreadas
-=======
->>>>>>> Stashed changes
 class Deck:
   def crearDeck(self):#crea lista de cartas
     l_mons=[]

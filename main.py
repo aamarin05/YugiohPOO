@@ -50,7 +50,7 @@ class Carta:
     return self.__posicion
   def setPosicion (self, posicion):
     self.__posicion = posicion
- 
+
 class CartaMonstruo(Carta):
   def __init__(self, nombre, descripcion, posicion,orientacion,tipo, atributo, defensa, ataque): #constructor
     super().__init__(nombre, descripcion, posicion,orientacion)
@@ -85,6 +85,29 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE
     return True
+  
+  # Metodo atacar carta oponente
+  def atacarCarta(self, carta_oponente): #retorna la diferencia de puntos de las dos cartas
+    diferencia_puntos = 0
+    if (carta_oponente.getPosicion() == Posicion.VERTICAL): # queire decir que esta en ataque
+      if (self.__ataque > carta_oponente.getAtaque()):
+        diferencia_puntos = self.__ataque - carta_oponente.getAtaque()
+        return diferencia_puntos
+      elif (self.__ataque < carta_oponente.getAtaque):
+        diferencia_puntos = carta_oponente.getAtaque() - self.__ataque
+        return diferencia_puntos
+      else: 
+        diferencia_puntos = 0
+    else: # carta atacada esta en defensa
+      if (self.__ataque > carta_oponente.getDefensa()):
+        diferencia_puntos = self.__ataque - carta_oponente.getDefensa()
+        return diferencia_puntos
+      elif (self.__ataque < carta_oponente.getDefensa):
+        diferencia_puntos = carta_oponente.getDefensa() - self.__ataque
+        return diferencia_puntos
+      else: 
+        diferencia_puntos = 0
+
 
 class CartaMagica (Carta):
   def __init__(self, nombre, descripcion, posicion, orientacion,ataque, defensa,tipo,carta_monstruo):
@@ -197,15 +220,52 @@ class Jugador:
 
 #Clase Juego 
 class Juego():
-  def __init__(self, Lista_tableros, Jugador): #donde las lista tableros y jugadores tienen 2 elementos
-    self.__tableros = Lista_tableros
-    self.__jugador = Jugador
-    self.__turno = 0
-  def faseDeclararBatalla(self, carta_oponente):
-    if self.__turno < 2: 
-      print("No se puede declarar batalla en el primer turno")
-    else: #El turno es igual a 2 o mayor
-      if(carta_oponente.posicion == Posicion.VERTICAL): #si es verdad, entonces quiere decir que esta en ataque
-        if():    # se comparan los puntos de ataque de la carta de ataque al la carta atacada
+  def __init__(self, Lista_tableros, l_jugadores, turnoJugador): 
+    self.__tableros = Lista_tableros 
+    self.__jugadores = l_jugadores
+    self.__turnoJuego = 0
+    self.__turnoJugador = turnoJugador # 0 para la persona y 1 para la maquina
+  # def faseDeclararBatalla(self, carta_oponente):
     
-      # else: #Si es falso, quiere decir que esta en defensa
+  #   if self.__turno < 2: 
+  #     print("No se puede declarar batalla en el primer turno")
+  #   else: #El turno es igual a 2 o mayor
+  #     diferencia_puntos = self.atacarCarta(carta_oponente)
+  #     if()
+    
+  #     # else: #Si es falso, quiere decir que esta en defensa
+  
+  def faseDeclararBatalla(self):
+    if (self.__jugadores[self.__turnoJugador] == "MAQUINA"):
+      if self.__turnoJuego < 2: 
+        print("No se puede declarar batalla en el primer turno")
+      else:
+        # carta_atacante   = rd.choice(self.__tableros[self.__turnoJugador])
+        l_cartas_mostruo = []
+        for carta in self.__tableros[self.__turnoJugador]:
+          if isinstance(carta, CartaMonstruo):
+            l_cartas_mostruo.append(carta)
+        carta_atacante = rd.choice(l_cartas_mostruo)
+        l_cartas_atacar = []
+        for carta in self.__tableros[self.__turnoJugador-1]:
+          if isinstance(carta, CartaMonstruo):
+            l_cartas_atacar.append(carta)
+        if (carta_atacante is not None and len(l_cartas_atacar) == 0):
+          carta_atacada = rd.choice(l_cartas_atacar)
+          if(carta_atacada.getPosicion() == Posicion.VERTICAL):
+            diferencia_puntos = carta_atacada.atacarCarta()
+            puntos_jugador = self.__jugadores[1].getAtaque() - diferencia_puntos
+            self.__jugadores[1].set(puntos_jugador)
+          
+      self.__turnoJugador -= 1
+    else: 
+      if self.__turnoJuego < 2: 
+        print("No se puede declarar batalla en el primer turno")
+      else:
+        carta_atacante = input("Ingrese el nombre de la carta a de su tablero: ")
+        carta_atacada = input("Ingrese el nombre de la carta a la que atacar: ")
+        carta_atacante = self.seleccionarCarta(carta_atacante)
+        carta_atacada = self.seleccionarCarta(carta_atacada)
+        if(carta_atacante is not None and carta_atacada is not None):
+          if(carta_atacada.getPosicion() == Posicion.VERTICAL):
+            diferencia_puntos = carta_atacada.atacarCarta()
