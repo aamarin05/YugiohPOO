@@ -127,7 +127,7 @@ class CartaMagica (Carta):
       return f"{self.__nombre} , incrementa en {self.__defensa} la defensa de monstruos de tipo {self.__tipo}"
 
 class CartaTrampa (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,carta_monstruo):
+  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,tipo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__atributo = atributo
     self.__carta_monstruo = carta_monstruo
@@ -181,7 +181,7 @@ class Jugador:
     self.__puntos = puntos
   def getMano (self):
     return self.__mano
-  
+
   def tomarCarta(self):
     return self.__deck.pop()
   def contar_cartas_tipo(self, tipo):
