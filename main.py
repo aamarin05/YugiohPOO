@@ -85,6 +85,8 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE
     return True
+  def __str__(self):
+    return f"{self.__nombre}: {self.__descripcion} con ATQ:{self.__ataque} y DEF:{self.__defensa}"
 
 class CartaMagica (Carta):
   def __init__(self, nombre, descripcion, posicion, orientacion,ataque, defensa,tipo,carta_monstruo):
@@ -125,14 +127,17 @@ class CartaMagica (Carta):
       return f"{self.__nombre} , incrementa en {self.defensa} la defensa de monstruos de tipo {self.__tipo}"
 
 class CartaTrampa (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,carta_monstruo):
+  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,tipo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__atributo = atributo
+    self.__tipo= tipo
 
   def getAtributo (self):
       return self.__atributo
   def setAtributo (self,atributo):
       self.__atributo = atributo
+  def __str__(self):
+    return f"{self.__nombre} , detiene el ataque de un monstruo tipo {self.__tipo}"
 
 from cartasCreadas import cartas
 class Deck:
@@ -174,7 +179,6 @@ class Jugador:
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
-  
   def tomarCarta(self):
     return self.__deck.pop()
   def contar_cartas_tipo(self, tipo):
