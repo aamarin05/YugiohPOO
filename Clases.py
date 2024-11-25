@@ -121,7 +121,7 @@ class CartaTrampa (Carta):
 
 from cartasCreadas import listaCartasCreadas
 class Deck:
-  def crearDeck(self):
+  def crearDeck(self):#crea lista de cartas
     l_mons=[]
     l_mag=[]
     l_tram=[]
