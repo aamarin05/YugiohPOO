@@ -119,10 +119,7 @@ class CartaTrampa (Carta):
   def setAtributo (self,atributo):
       self.__atributo = atributo
 
-<<<<<<< Updated upstream
 from cartasCreadas import listaCartasCreadas
-=======
->>>>>>> Stashed changes
 class Deck:
   def crearDeck(self):#crea lista de cartas
     l_mons=[]
@@ -136,44 +133,48 @@ class Deck:
       if isinstance(c,CartaTrampa):
         l_tram.append(c)
       deck= rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
-      return deck
+    return deck
 
    
 class Tablero:
   def _init_(self):
     self.cartas= []
-  def contar_cartas_tipo(self, tipo):
-    for carta in self.cartas:
-      return sum(isinstance(carta, tipo))
-  def agregarCarta(self,carta):
-    if (len(cartas)<=6):
-      if isinstance(carta,CartaMonstruo):
-        if self.contar_cartas_tipo(CartaMonstruo) < 3:
-          self.cartas.append(carta)
-        elif isinstance(carta, (CartaMagica, CartaTrampa)):
-          if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
-            self.cartas.append(carta)
-  def seleccionarCarta(self,nombre):
-    for c in self.cartas:
-      if (c.getNombre()==nombre):
-        return c
+
 
 
 class Jugador:
-  def __init__(self,nombre,deck,tablero):
+  def __init__(self,nombre,deck,tablero,mano):
     self.__nombre = nombre
-    self.__deck = deck
+    self.__deck = Deck.crearDeck(self)
     self.__puntos = 4000
-    self.__tablero = tablero
+    self.__tablero = Tablero()
+    self.__mano= deck.pop()*5
   def getNombre(self):
     return self.__nombre
   def setNombre (self, nombre):
     self.__nombre = nombre
   def getDeck (self):
     return self.__deck
-  def setDeck (self, deck):
-    self.__deck = deck
   def getPuntos (self):
     return self.__puntos
   def setPuntos (self, puntos):
     self.__puntos = puntos
+  def tomarCarta(self):
+    return self.__deck.pop()
+  def contar_cartas_tipo(self, tipo):
+    for carta in self.__mano:
+      return sum(isinstance(carta, tipo))
+  def agregarCartaTablero(self,carta):
+    if (len(self.__tablero)<=6):
+      if isinstance(carta,CartaMonstruo):
+        if self.contar_cartas_tipo(CartaMonstruo) < 3:
+          self.__tablero.append(carta)
+          self.__mano.remove(carta)
+        elif isinstance(carta, (CartaMagica, CartaTrampa)):
+          if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
+            self.__tablero.append(carta)
+            self.__mano.remove(carta)
+  def seleccionarCartaTablero(self,nombre):
+    for c in self.__tablero:
+      if (c.getNombre()==nombre):
+        return c
