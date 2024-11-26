@@ -1,3 +1,5 @@
+from Orientacion import *
+from Posicion import *
 class Carta:
   def __init__(self, nombre, descripcion, posicion,orientacion): #Constructor
     self.__nombre = nombre #__ es para acceso privado
@@ -18,3 +20,8 @@ class Carta:
     return self.__posicion
   def setPosicion (self, posicion):
     self.__posicion = posicion
+  def __str__(self):
+    if self.__orientacion == Orientacion.ARRIBA:
+      return f"{self.__nombre}\n{self.__descripcion}"
+    else:
+      return f"Carta boca abajo"
