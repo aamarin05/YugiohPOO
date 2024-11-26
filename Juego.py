@@ -7,26 +7,15 @@ from Maquina import *
 
 #Clase Juego 
 class Juego():
-  def __init__(self, maquina, jugador): #donde las lista tableros y jugadores tienen 2 elementos
+  def __init__(self, maquina, jugador): 
     self.__maquina = maquina
     self.__jugador = jugador
-    self.__turno = 0 # 0 para la persona y 1 para la maquina
-  # def faseDeclararBatalla(self, carta_oponente):
-    
-  #   if self.__turno < 2: 
-  #     print("No se puede declarar batalla en el primer turno")
-  #   else: #El turno es igual a 2 o mayor
-  #     diferencia_puntos = self.atacarCarta(carta_oponente)
-  #     if()
-    
-  #     # else: #Si es falso, quiere decir que esta en defensa
   
   def faseDeclararBatalla(self):
     if (self.__jugadores[self.__turnoJugador] == "MAQUINA"):
       if self.__turnoJuego < 2: 
         print("No se puede declarar batalla en el primer turno")
       else:
-        # carta_atacante   = rd.choice(self.__tableros[self.__turnoJugador])
         l_cartas_mostruo = []
         for carta in self.__tableros[self.__turnoJugador]:
           if isinstance(carta, CartaMonstruo):
@@ -55,15 +44,7 @@ class Juego():
         if(carta_atacante is not None and carta_atacada is not None):
           if(carta_atacada.getPosicion() == Posicion.VERTICAL):
             diferencia_puntos = carta_atacada.atacarCarta()
-            
-  def faseDeclararBatalla(self, carta_oponente):
-    if self.__turno < 2: 
-      print("No se puede declarar batalla en el primer turno")
-    else: #El turno es igual a 2 o mayor
-      if(carta_oponente.posicion == Posicion.VERTICAL): #si es verdad, entonces quiere decir que esta en ataque
-        return False    # se comparan los puntos de ataque de la carta de ataque al la carta atacada
-    
-      # else: #Si es falso, quiere decir que esta en defensa
+
   def Jugar(self):
     print("Fase principal")
     print(f"Mano del jugador: {self.__jugador.getMano()}")

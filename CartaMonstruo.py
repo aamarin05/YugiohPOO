@@ -14,12 +14,8 @@ class CartaMonstruo(Carta):
 
   def getTipo (self):
       return self.__tipo
-  def setTipo (self, tipo):
-      self.__tipo = tipo
   def getAtributo (self):
       return self.__atributo
-  def setAtributo (self,atributo):
-      self.__atributo = atributo
   def getAtaque (self):
       return self.__ataque
   def setAtaque (self, ataque):

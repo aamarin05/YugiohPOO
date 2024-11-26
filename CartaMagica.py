@@ -15,12 +15,8 @@ class CartaMagica (Carta):
     return self.__tipo
   def getAtaque (self):
     return self.__ataque
-  def setAtaque (self, ataque):
-    self._ataque = ataque
   def getDefena (self):
     return self.__defensa
-  def setDefensa (self, defensa):
-    self.__defensa = defensa
     
   def usar (self,carta_monstruo):
     if self.__tipo == carta_monstruo.getTipo():

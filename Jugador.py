@@ -8,14 +8,11 @@ class Jugador:
     self.__puntos = 4000
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
+
   def getNombre(self):
     return self.__nombre
-  def setNombre (self, nombre):
-    self.__nombre = nombre
   def getDeck (self):
     return self.__deck
-  def setDeck (self, deck):
-    self.__deck = deck
   def getPuntos (self):
     return self.__puntos
   def setPuntos (self, puntos):
