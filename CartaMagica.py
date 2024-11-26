@@ -31,8 +31,6 @@ class CartaMagica (Carta):
     if carta_monstruo.muere():
       return True
 
+
   def __str__(self):
-    if self.__defensa == 0:
-      return f"{self.__nombre} , incrementa en {self.__ataque} el ataque de monstruos de tipo {self.__tipo}"
-    if self.__ataque == 0:
-      return f"{self.__nombre} , incrementa en {self.__defensa} la defensa de monstruos de tipo {self.__tipo}"
+    return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"
