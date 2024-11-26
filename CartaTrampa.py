@@ -5,7 +5,7 @@ from TipoAtributo import *
 from TipoMonstruo import *
 
 class CartaTrampa (Carta):
-  def __init__(self, nombre, descripcion, posicion, orientacion,atributo,tipo):
+  def __init__(self, nombre, descripcion, posicion, orientacion,atributo):
     super().__init__(nombre, descripcion, posicion, orientacion)
     self.__atributo = atributo
 
