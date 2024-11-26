@@ -10,10 +10,21 @@ class Juego():
   def __init__(self, maquina, jugador): 
     self.__maquina = maquina
     self.__jugador = jugador
-  def declararBatalla(self,cartaMonstruo,oponente):
-    perdidaPuntos = self.atacar(cartaMonstruo)
-    oponente.setPuntos() = oponente.getPuntos() - perdidaPuntos
-    cartaMonstruo.remo
+  def declararBatalla(self,cartaMonstruo,oponente,atacante):
+    if (self.eModoAtaque() and cartaMonstruo.eModoAtaque()):
+        if (self.getAtaque() > cartaMonstruo.getAtaque()):
+            diferencia = self.getAtaque() - cartaMonstruo.getAtaque()
+            oponente.setPuntos() = oponente.getPuntos() - diferencia
+        if (self.getAtaque() == cartaMonstruo.getAtaque()):
+          oponente.getTablero().removerCarta(cartaMonstruo)
+          atacante.getTablero().removerCarta(self)
+    if (self.eModoDefensa() and cartaMonstruo.eModoDefensa()):
+        if (self.getAtaque > cartaMonstruo.getDefensa()):
+            oponente.getTablero().removerCarta(cartaMonstruo)
+        if  (self.getAtaque < cartaMonstruo.getDefensa()):
+            diferencia = self.getAtaque() - cartaMonstruo.getDefensa()
+            cartaMonstruo.modoAtaque().setPosicion(Posicion.HORIZONTAL)
+
 
 
   def fdeclararBatalla(self):
