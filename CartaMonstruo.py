@@ -34,6 +34,5 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE
     return True
-  
   def __str__(self):
-    return f"{self.__nombre}: {self.__descripcion} con ATQ:{self.__ataque} y DEF:{self.__defensa}"
+    return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"

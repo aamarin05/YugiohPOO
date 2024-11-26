@@ -18,3 +18,14 @@ class Carta:
     return self.__posicion
   def setPosicion (self, posicion):
     self.__posicion = posicion
+  def __str__(self):
+    if self.__orientacion == Orientacion.ARRIBA:
+      return f"{self.__nombre}\n{self.__descripcion}"
+    else:
+      return f"Carta boca abajo"
+  def __eq__(self, carta):
+    if isinstance(value,Carta):
+      if(self.__nombre==carta.__nombre):
+        return True
+      else:
+        return False
