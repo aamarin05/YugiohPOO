@@ -10,8 +10,9 @@ class Deck:
     l_mons=[]
     l_mag=[]
     l_tram=[]
-    archivo= open("cartasCreadas",'r')
-    for linea in archivo.strip().split(','):
+    archivo= open("cartasCreadas.txt",'r')
+    for linea in archivo:
+      linea = linea.strip().split(',')
       if(linea[0]=="CartaMonstruo"):
         c= CartaMonstruo(nombre=linea[1],descripcion=linea[2],posicion=linea[3].strip(""),orientacion=linea[4].strip(""),tipomonstruo= linea[5].strip(""),atributo= linea[6].strip(""),defensa= int(linea[7]),ataque= int(linea[8]))
         l_mons.append(c)

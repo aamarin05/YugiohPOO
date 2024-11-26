@@ -1,3 +1,4 @@
+from Orientacion import *
 class Carta:
   def __init__(self, nombre, descripcion, posicion,orientacion): #Constructor
     self.__nombre = nombre #__ es para acceso privado

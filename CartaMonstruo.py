@@ -35,4 +35,4 @@ class CartaMonstruo(Carta):
   def muere(self): #NOT SURE
     return True
   def __str__(self):
-    return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"
+    return f"Carta Monstruo: {super().__str__()}\n{self.__ataque}\n{self.__defensa}"

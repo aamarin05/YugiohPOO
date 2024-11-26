@@ -17,6 +17,7 @@ class Jugador:
     self.__puntos = puntos
   def getMano (self):
     return self.__mano
+  
   def tomarCarta(self):
     return self.__deck.pop()
   def agregarCartaTablero(self,carta):
