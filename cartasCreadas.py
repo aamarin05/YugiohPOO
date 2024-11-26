@@ -1,5 +1,6 @@
-from main import CartaMonstruo, CartaMagica, CartaTrampa
-from main import TipoAtributo, TipoMonstruo, Orientacion, Posicion
+from CartaMonstruo import *
+from CartaTrampa import *
+from CartaMagica import *
 
 
 listaCartasCreadas = [
