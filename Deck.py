@@ -12,7 +12,7 @@ class Deck:
     l_tram=[]
     archivo= open("cartasCreadas",'r')
     for linea in archivo.strip().split(','):
-      tipodecarta,nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,ataque,defensa,= linea
+      tipodecarta,nombre,descripcion,posicion,orientacion,tipomonstruo,tipoatributo,ataque,defensa= linea
       posicion= posicion.split('.')[-1]
       orientacion= orientacion.split('.')[-1]
       tipomonstruo= tipomonstruo.split('.')[-1]
