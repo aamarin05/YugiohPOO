@@ -39,10 +39,12 @@ class Juego():
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
     print(jugador.getTablero())
+    print(jugador.manoImprimir())
     indice = input("Ingrese el indice de la carta: ")
     jugador.agregarCartaTablero(int(indice)+1)
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
     print(jugador.getTablero())
+    print(jugador.manoImprimir())
     indiceMa = input("Ingrese el indice de la carta Mágica a usar: ")
     cartaMa = jugador.getTablero().seleccionarCarta(int(indiceMa)+1)
     indiceMo = input("Ingrese el indice de la carta Monstruo a mejorar")
@@ -80,7 +82,7 @@ class Juego():
       print("Fase principal")
       #JUGADOR
       if self.__turnos == 1:
-        print(f"Mano del jugador: {self.__jugador.getMano()}")
+        print(f"Mano del jugador: {self.__jugador.manoImprimir()}")
         print("Crea tu tablero")
       while True:
         pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- CONTINUAR A LA SIGUIENTE FASE")
