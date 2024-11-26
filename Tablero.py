@@ -5,8 +5,8 @@ class Tablero:
     self.__cartasjugador = [["No hay Carta", "No hay Carta", "No hay Carta"], ["No hay Carta", "No hay Carta", "No hay Carta"]] 
   def _str_(self):
     print(f"Tablero
-            \nMonstruo: [{self.__cartasjugador[0][0]}] [{self.__cartasjugador[0][1]}] [{self.__cartasjugador[0][2]}]
-            \nMagicas: [{self.__cartasjugador[1][0]}] [{self.__cartasjugador[1][1]}] [{self.__cartasjugador[1][2]}]
+            \nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]
+            \nMagicas: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]
             ")
   def seleccionarCarta(self,indice):
     print(self._str_())
