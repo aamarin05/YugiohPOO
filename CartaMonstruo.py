@@ -56,6 +56,6 @@ class CartaMonstruo(Carta):
         return diferencia_puntos
       else: 
         diferencia_puntos = 0
-
+  
   def __str__(self):
-    return f"{self.__nombre}: {self.__descripcion} con ATQ:{self.__ataque} y DEF:{self.__defensa}"
+    return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"
