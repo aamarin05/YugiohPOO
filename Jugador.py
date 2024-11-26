@@ -26,14 +26,15 @@ class Jugador:
     for carta in self.__mano:
       return sum(isinstance(carta, tipo))
   def agregarCartaTablero(self,carta):
-    if (len(self.__tablero)<=6):
       if isinstance(carta,CartaMonstruo):
-        if self.contar_cartas_tipo(CartaMonstruo) < 3:
-          self.__tablero.__cartas.append(carta)
-          self.__mano.remove(carta)
-        elif isinstance(carta, (CartaMagica, CartaTrampa)):
-          if self.contar_cartas_tipo(CartaMagica) + self.contar_cartas_tipo(CartaTrampa) < 3:
-            self.__tablero.__cartas.append(carta)
-            self.__mano.remove(carta)
-  def seleccionarCartaTablero(self,indice):
-    return self.__tablero()[indice]
+        if None in self._tablero._cartasjugador[0]:
+          indice= self._tablero._cartasjugador[0].index(None)
+          self._tablero._cartasjugador[0][indice]= carta
+        else:
+          print("Espacio para carta tipo Monstruo lleno en el tablero")
+      elif isinstance(carta,CartaMagica) or isinstance(carta,CartaMonstruo):
+        if None in self._tablero._cartasjugador[1]:
+          indice= self._tablero._cartasjugador[1].index(None)
+          self._tablero._cartasjugador[1][indice]= carta
+        else:
+          print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
