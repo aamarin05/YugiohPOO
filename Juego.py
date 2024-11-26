@@ -32,6 +32,11 @@ class Juego():
     print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()}")
     print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()}")
 
+  def batallaDirecta(cartaAtacante,oponente):
+    puntos = cartaAtacante.getAtaque() - oponente.getPuntos
+    oponente.setPuntos(abs(puntos))
+
+#OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
     print(jugador.getTablero())
     indice = input("Ingrese el indice de la carta: ")
@@ -46,14 +51,22 @@ class Juego():
       cartaMa.usar(cartaMo)
     if (isinstance(cartaMa, CartaTrampa)):
       cartaMa.usar(cartaMo)
-  def opcion3 (self,jugador,oponente):
+  def opcion3 (self,jugador,oponente,cartasUsadas):
     print(jugador)
     print(oponente)
     indiceJugador = input("Ingrese indice de su carta montruo que declara batalla: ")
     cartaJugador = jugador.getTablero().getMonstruos()[int(indiceJugador)+1]
-    indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
-    cartaOponente = oponente.getTablero().getMonstruos()[int(indiceOponente)+1]
-    self.declararBatalla(cartaOponente,cartaJugador,oponente,jugador)
+    if cartaJugador not in cartasUsadas:
+      if oponente.getTablero().getMonstruos() == []:
+        self.batallaDirecta(cartaJugador,self.__maquina)
+        print(f"{cartaJugador} tuvo una batalla directa contra {self.__maquina}")
+      else:
+        indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
+        cartaOponente = oponente.getTablero().getMonstruos()[int(indiceOponente)+1]
+        self.declararBatalla(cartaOponente,cartaJugador,oponente,jugador)
+      return cartaJugador
+    else:
+      print("Esta carta ya tuvo su batalla")
 
 
   def Jugar(self):
@@ -100,6 +113,7 @@ class Juego():
           else: 
             print("Ingrese opción válida")
       else:
+        cartasUsadas = []
         while True:
           pregunta = input("Ingresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nOPCION 3.- DECLARAR BATALLA \nEnter para seguir")
           pregunta = pregunta.lower()
@@ -108,9 +122,11 @@ class Juego():
           elif pregunta == "2":
             self.opcion2(self.__jugador)
           elif pregunta == "3":
-            self.opcion3(self.__jugador,self.__maquina)
+            cartaUsada = self.opcion3(self.__jugador,self.__maquina,cartasUsadas)
+            cartasUsadas.append(cartaUsada)
           elif pregunta == "":
             self.__maquina.faseBatalla()
+            cartasUsadas = []
           else: 
             print("Ingrese opción válida")
       
