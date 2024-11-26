@@ -35,6 +35,16 @@ class Juego():
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos
     oponente.setPuntos(abs(puntos))
+  
+  def mFasePrincipal(self):
+    #COLOCAR LAS CARTAS EN EL TABLERO ESTRATÉGICAMENTE. ARRIBA ATAQUE, VERTICAL ATAQUE
+    self.__maquina.ordenarMano()
+
+
+
+
+
+
 
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
@@ -46,9 +56,9 @@ class Juego():
     print(jugador.getTablero())
     print(jugador.manoImprimir())
     indiceMa = input("Ingrese el indice de la carta Mágica a usar: ")
-    cartaMa = jugador.getTablero().seleccionarCarta(int(indiceMa)+1)
+    cartaMa = jugador.seleccionarCartaTablero(int(indiceMa)+1)
     indiceMo = input("Ingrese el indice de la carta Monstruo a mejorar")
-    cartaMo = jugador.getTablero().seleccionarCarta(int(indiceMo)+1)
+    cartaMo = jugador.seleccionarCartaTablero(int(indiceMo)+1)
     if (isinstance(cartaMa, CartaMagica)):
       cartaMa.usar(cartaMo)
     if (isinstance(cartaMa, CartaTrampa)):
