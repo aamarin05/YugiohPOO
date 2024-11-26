@@ -10,8 +10,13 @@ class Juego():
   def __init__(self, maquina, jugador): 
     self.__maquina = maquina
     self.__jugador = jugador
-  
-  def faseDeclararBatalla(self):
+  def declararBatalla(self,cartaMonstruo,oponente):
+    perdidaPuntos = self.atacar(cartaMonstruo)
+    oponente.setPuntos() = oponente.getPuntos() - perdidaPuntos
+    cartaMonstruo.remo
+
+
+  def fdeclararBatalla(self):
     if (self.__jugadores[self.__turnoJugador] == "MAQUINA"):
       if self.__turnoJuego < 2: 
         print("No se puede declarar batalla en el primer turno")

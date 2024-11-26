@@ -8,8 +8,6 @@ class Carta:
   #getters y setters
   def getNombre (self):
     return self.__nombre
-  def setNombre (self, nombre):
-    self.__nombre = nombre
   def getDescripcion (self):
     return self.__descripcion
   def getOrientacion (self):

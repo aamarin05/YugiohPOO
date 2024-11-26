@@ -34,6 +34,7 @@ class CartaMonstruo(Carta):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE
     return True
+  
   # Metodo atacar carta oponente
   def atacarCarta(self, carta_oponente): #retorna la diferencia de puntos de las dos cartas
     diferencia_puntos = 0
