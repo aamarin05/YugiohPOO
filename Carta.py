@@ -23,3 +23,9 @@ class Carta:
       return f"{self.__nombre}\n{self.__descripcion}"
     else:
       return f"Carta boca abajo"
+  def __eq__(self, carta):
+    if isinstance(value,Carta):
+      if(self.__nombre==carta.__nombre):
+        return True
+      else:
+        return False
