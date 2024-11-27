@@ -6,7 +6,8 @@ from TipoMonstruo import *
 import random as rd
 
 class Deck:
-  def crearDeck(self):
+  @staticmethod
+  def crearDeck():
     l_mons=[]
     l_mag=[]
     l_tram=[]
