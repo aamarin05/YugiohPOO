@@ -3,6 +3,10 @@ from Jugador import *
 class Tablero:
   def _init_(self):
     self.__cartasjugador = [["No hay Carta", "No hay Carta", "No hay Carta"], ["No hay Carta", "No hay Carta", "No hay Carta"]] 
+  def getMonstruos(self):
+    return self.__cartasjugador[0]
+  def getMagicaTrampa(self):
+    return self.__cartasjugador[1]
   def _str_(self):
     print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
     
