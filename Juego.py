@@ -31,7 +31,7 @@ class Juego():
               atacante.setPuntos(puntos) 
               cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
     if isinstance(cartaAtacante,CartaMonstruo) and isinstance(cartaOponente,CartaTrampa):
-      cartaOponente.activar()
+      cartaAtacante.activar()
       oponente.getTablero().removerCarta(cartaOponente)
     print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()}")
     print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()}")
