@@ -24,12 +24,12 @@ class Maquina (Jugador):
     cartasOrdenadas = sorted(listaCartas, key=lambda carta: carta.getAtaque() + carta.getDefensa(), reverse=True)
     return cartasOrdenadas[:3]
   def agregarMonstruoTablero(self,monstruo,modo):
-    if len(self.__tablero.__cartasMonstruo) < 3:
+    if len(self.__tablero.getMonstruos()) < 3:
       if modo == "ataque":
         monstruo.modoAtaque()
       if modo == "defensa":
         monstruo.modoDefensa()
-      self.__tablero.__cartasMonstruo.append(monstruo)
+      self.__tablero.getMonstruos().append(monstruo)
 
   #FASE PRINCIPAL DE LA MÁQUINA
   def mFasePrincipal(self):
@@ -40,7 +40,13 @@ class Maquina (Jugador):
         self.agregarMonstruoTablero(monstruo,"defensa")
       else:
         self.agregarMonstruoTablero(monstruo,"ataque")
+    for cartaM in magicas:
+      self.agregarEspecialesTablero(cartaM)
 
+  def agregarEspecialesTablero(self,especial):
+    if len(self.__tablero.getEspeciales()) < 3:
+      self.__tablero.getEspeciales().append(especial)
+      
 #COMO USA LA MAQUINA LAS CARTAS ESPECIALES
   def usarEspeciales(self):
     especiales = self.__tablero.getEspeciales()
