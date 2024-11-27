@@ -11,8 +11,5 @@ class CartaTrampa (Carta):
 
   def getAtributo (self):
       return self.__atributo
-
-    
-
-  def __str__(self):
+  def activar(self):
     return f"Carta Trampa:\n{self.__nombre} , detiene el ataque de un monstruo con atributo {self.__atributo}"
