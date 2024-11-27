@@ -14,13 +14,13 @@ class Deck:
     for linea in archivo:
       linea = linea.strip().split(',')
       if(linea[0]=="CartaMonstruo"):
-        c= CartaMonstruo(linea[1],linea[2],linea[3].strip(""),linea[4].strip(""),linea[5].strip(""), linea[6].strip(""),int(linea[7]),int(linea[8]))
+        c= CartaMonstruo(linea[1],linea[2],Posicion[linea[3]],Orientacion[linea[4]], TipoMonstruo[linea[5]],TipoAtributo[linea[6]],int(linea[7]),int(linea[8]))
         l_mons.append(c)
       if(linea[0]=="CartaMagica"):
-        c= CartaMagica(linea[1], linea[2], linea[3].strip(""), linea[4].strip(""), int(linea[5]), int(linea[6]),linea[7].strip(""))
+        c= CartaMagica(linea[1], linea[2], Posicion[linea[3]], Orientacion[linea[4]],  int(linea[5]), int(linea[6]), TipoMonstruo[linea[5]])
         l_mag.append(c)
       if(linea[0]=="CartaTrampa"):
-        c= CartaTrampa(linea[1], linea[2], linea[3].strip(""),linea[4].strip(""),linea[5].strip(""))
+        c= CartaTrampa(linea[1], linea[2], Posicion[linea[3]], Orientacion[linea[4]], TipoAtributo[linea[6]])
         l_tram.append(c)
       archivo.close()
       deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
