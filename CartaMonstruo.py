@@ -28,11 +28,21 @@ class CartaMonstruo(Carta):
   def cambiarPosicion(self,posicion):
       if self.__orientacion == Orientacion.ARRIBA:
         self.__posicion = posicion
-  def modoAtaque(self):
-      self.__orientacion = Orientacion.ARRIBA
-  def modoDefensa(self):
-      self.__orientacion = Orientacion.ABAJO
+  def eModoAtaque(self):
+      if self.__posicion== Posicion.VERTICAL:
+          return True
+      else:
+          return False
+  def eModoDefensa(self):
+      if self.__posicion== Posicion.HORIZONTAL:
+          return True
+      else:
+          return False
   def muere(self): #NOT SURE
     return True
   def __str__(self):
-    return f"Carta Monstruo: {super().__str__()}\n{self.__ataque}\n{self.__defensa}"
+    if self.__posicion== Posicion.VERTICAL:
+        modo= "ATAQUE"
+    else:
+        modo= "DEFENSA"
+    return f"Carta Monstruo\nModo:{modo}\n{super().__str__()}\nATQ:{self.__ataque}\nDEF:{self.__defensa}"
