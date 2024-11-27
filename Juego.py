@@ -14,18 +14,28 @@ class Juego():
     self.__turnos = 1
 
   def declararBatalla(self,cartaOponente,cartaAtacante,oponente,atacante):
+    cartasTrampa=[]
+    for c in oponente.getMagicaTrampa():
+        if isinstance(c,CartaTrampa):
+          cartasTrampa.append(c)
+    if len(cartasTrampa)>0:
+        atributos= []
+        for ct in cartasTrampa:
+          atributos.append(ct.getAtributo())
+        cartasTrampa[atributos.index(cartaOponente.getAtributo())].activar(cartaAtacante) 
+
     if (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
         if (cartaOponente.getAtaque() < cartaAtacante.getAtaque()):
             diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
             puntos = oponente.getPuntos() - abs (diferencia)
             oponente.setPuntos(puntos)
-        if (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
+        elif (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
           oponente.getTablero().removerCarta(cartaOponente)
           atacante.getTablero().removerCarta(cartaAtacante)
-    if (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
+    elif (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
         if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
             oponente.getTablero().removerCarta(cartaOponente)
-        if  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
+        elif  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
             diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
             puntos = atacante.getPuntos() - abs (diferencia)
             atacante.setPuntos(puntos) 
