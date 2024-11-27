@@ -49,7 +49,7 @@ class CartaMonstruo(Carta):
             modo = "ATAQUE"
         elif self.eModoDefensa:
             modo = "DEFENSA"
-        if self.__orientacion==Orientacion.ARRIBA:
+        if self.getOrientacion()==Orientacion.ARRIBA:
             return f"Carta Monstruo\nModo:{modo}\n{super().__str__()}\nATQ:{self.__ataque}\nDEF:{self.__defensa}"
         else:
             return "Carta boca abajo"

@@ -17,4 +17,4 @@ class CartaTrampa (Carta):
       print(f"Carta Trampa:\n{self.__nombre} , detiene el ataque de un monstruo con atributo {self.__atributo}")
 
   def __str__(self):
-    return f"Carta Trampa: \n{self.__nombre} , detiene el ataque de un monstruo con atributo {self.__atributo}"
+    return f"Carta Trampa: \n{self.getNombre()} , detiene el ataque de un monstruo con atributo {self.__atributo}"

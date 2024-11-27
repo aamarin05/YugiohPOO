@@ -11,7 +11,7 @@ class Deck:
     l_mons=[]
     l_mag=[]
     l_tram=[]
-    archivo= open("archivo.txt", "r", encoding="utf-8")
+    archivo = open("archivo.txt", "r", encoding="utf-8")
     for linea in archivo:
       linea = linea.strip().split(',')
       if(linea[0]=="CartaMonstruo"):
