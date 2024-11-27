@@ -112,7 +112,7 @@ class Juego():
       print("Esta carta ya tuvo su batalla")
 
 
-  def Jugar(self):
+  def jugar(self):
     while (self.__jugador.getPuntos() > 0 and self.__maquina.getPuntos() > 0):
       print (f"Turno {self.__turnos}")
 
@@ -127,9 +127,9 @@ class Juego():
         print("Crea tu tablero")
       pregunta = ""
       while pregunta != "2" :
-        pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- CONTINUAR A LA SIGUIENTE FASE")
+        pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- CONTINUAR A LA SIGUIENTE FASE \n:")
         if pregunta == "1":
-          print(f"Mano del jugador: {self.__jugador.getMano()}")
+          print(f"Mano del jugador: {self.__jugador.manoImprimir()}")
           indice = input("Escriba el número de la carta de su mano para agregarla al tablero: ")
           self.__jugador.agregarCartaTablero(int(indice)+1)
         else:

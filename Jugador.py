@@ -4,7 +4,7 @@ from Tablero import *
 class Jugador:
   def __init__(self,nombre):
     self.__nombre = nombre
-    self.__deck = Deck.crearDeck(self)
+    self.__deck = Deck.crearDeck()
     self.__puntos = 4000
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
@@ -29,7 +29,7 @@ class Jugador:
     for i in range(len(self.__mano)):  
         carta = self.__mano[i]         
         mostrar += f"{i + 1}. {carta.__str__()}\n"
-    print(f"Usted tiene en su mano:\n{mostrar}")
+    return f"Usted tiene en su mano:\n{mostrar}"
 
   def seleccionarCartaMano(self,indice):
     return self.__mano[indice]
@@ -40,12 +40,14 @@ class Jugador:
         if len(self.__tablero.getMonstruos()) < 3:
           pos = input("1.Modo Ataque, 2. Modo Defensa:").lower()
           while pos != "1" or pos !="2":
-            if pos == "1":
-              carta.modoAtaque()
-              self.__tablero.getMonstruos().append(carta)
-            if pos == "2":
-              carta.modoDefensa()
-              self.__tablero.getMonstruos().append(carta)
+            print("Ingrese (1 o 2)")
+            pos = input("1.Modo Ataque, 2. Modo Defensa:").lower()
+          if pos == "1":
+            carta.modoAtaque()
+            self.__tablero.getMonstruos().append(carta)
+          if pos == "2":
+            carta.modoDefensa()
+            self.__tablero.getMonstruos().append(carta)
           print(f"Se ha agregado la carta monstruo {carta} al tablero")
         else:
           print("Espacio para carta tipo Monstruo lleno en el tablero")
