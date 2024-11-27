@@ -6,10 +6,7 @@ class Tablero:
     self.__cartasEspeciales = []
     self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
   def _str_(self):
-    print(f"Tablero
-            \nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]
-            \nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]
-            ")
+    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
     
   def seleccionarCarta(self,indice):
     print(self._str_())
