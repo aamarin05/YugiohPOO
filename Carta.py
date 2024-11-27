@@ -25,7 +25,7 @@ class Carta:
     else:
       return "Carta boca abajo"
   def __eq__(self, carta):
-    if isinstance(value,Carta):
+    if isinstance(carta,Carta):
       if(self.__nombre==carta.__nombre):
         return True
       else:
