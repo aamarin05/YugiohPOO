@@ -18,7 +18,10 @@ class Jugador:
   def getMano (self):
     return self.__mano
   def __str__(self):
-    return f"{self.__nombre}: {self.__puntos} Lp\n{self.__tablero._str_()}"
+    if self.__nombre=="Maquina":
+      print(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str()}]\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]")  
+    else:
+      print(f"Monstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]\n{self.__nombre} - Lp:{self.__puntos}")  
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
@@ -30,7 +33,7 @@ class Jugador:
     print(f"Usted tiene en su mano:\n{mostrar}")
   def seleccionarCartaMano(self,indice):
     return self.__mano[indice]
-  
+ 
   def agregarCartaTablero(self,carta):
     pos= input("Mandar carta boca arriba o abajo?:").lower()
     if pos=="arriba":
