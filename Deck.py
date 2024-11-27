@@ -23,6 +23,6 @@ class Deck:
       if(linea[0]=="CartaTrampa"):
         c= CartaTrampa(linea[1], linea[2], Posicion[linea[3].split(".")[-1]], Orientacion[linea[4].split(".")[-1]], TipoAtributo[linea[6].split(".")[-1]])
         l_tram.append(c)
-      archivo.close()
-      deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
-      return deck
+    archivo.close()
+    deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+    return deck
