@@ -17,19 +17,63 @@ class Jugador:
     self.__puntos = puntos
   def getMano (self):
     return self.__mano
-  
+  def __str__(self):
+    return f"{self.__nombre}: {self.__puntos} Lp\n{self.__tablero._str_()}"
   def tomarCarta(self):
-    return self.__deck.pop()
+    carta=self.__deck.pop()
+    self.__mano.append(carta)
+    print(f"Tomaste la carta {carta.getNombre()}")
+  def manoImprimir(self):
+    mostrar= ""
+    for carta in self.__mano:
+      mostrar+= "1."+ carta.__str__()
+    print(f"Usted tiene en su mano:\n{mostrar}")
+  def seleccionarCartaMano(self,indice):
+    return self.__mano[indice]
+    
   def agregarCartaTablero(self,carta):
-      if isinstance(carta,CartaMonstruo):
-        if None in self.__tablero.__cartasjugador[0]:
-          indice= self.__tablero.__cartasjugador[0].index(None)
-          self.__tablero.__cartasjugador[0][indice]= carta
-        else:
-          print("Espacio para carta tipo Monstruo lleno en el tablero")
-      elif isinstance(carta,CartaMagica) or isinstance(carta,CartaMonstruo):
-        if None in self.__tablero.__cartasjugador[1]:
-          indice= self.__tablero.__cartasjugador[1].index(None)
-          self.__tablero.__cartasjugador[1][indice]= carta
-        else:
-          print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
+    pos= input("Mandar carta boca arriba o abajo?:").lower()
+    if pos=="arriba":
+      carta.setOrientacion(Orientacion.ARRIBA)
+      modo= input("Jugar carta en Ataque o en defensa:").lower()
+      if modo=="ataque":
+        carta.setAtaque(Posicion.VERTICAL)
+        if isinstance(carta,CartaMonstruo):
+          if None in self.__tablero.__cartasjugador[0]:
+            indice= self.__tablero.__cartasjugador[0].index(None)
+            self.__tablero.__cartasjugador[0][indice]= carta
+          else:
+            print("Espacio para carta tipo Monstruo lleno en el tablero")
+        elif isinstance(carta,CartaMagica) or isinstance(carta,CartaMonstruo):
+          if None in self.__tablero.__cartasjugador[1]:
+            indice= self.__tablero.__cartasjugador[1].index(None)
+            self.__tablero.__cartasjugador[1][indice]= carta
+          else:
+            print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
+      if modo=="defensa":
+        carta.setDefensa(Posicion.HORIZONTAL)
+        if isinstance(carta,CartaMonstruo):
+          if None in self.__tablero.__cartasjugador[0]:
+            indice= self.__tablero.__cartasjugador[0].index(None)
+            self.__tablero.__cartasjugador[0][indice]= carta
+          else:
+            print("Espacio para carta tipo Monstruo lleno en el tablero")
+        elif isinstance(carta,CartaMagica):
+          if None in self.__tablero.__cartasjugador[1]:
+            indice= self.__tablero.__cartasjugador[1].index(None)
+            self.__tablero.__cartasjugador[1][indice]= carta
+          else:
+            print("Espacio para cartas tipo Magica lleno en el tablero")
+        elif isinstance(carta,CartaTrampa):
+          if None in self.__tablero.__cartasjugador[1]:
+            indice= self.__tablero.__cartasjugador[1].index(None)
+            self.__tablero.__cartasjugador[1][indice]= carta
+          else:
+            print("Espacio para cartas tipo Trampa lleno en el tablero")
+    elif pos=="abajo":
+      carta.setOrientacion(Orientacion.ABAJO)
+      if None in self.__tablero.__cartasjugador[1]:
+            indice= self.__tablero.__cartasjugador[1].index(None)
+            self.__tablero.__cartasjugador[1][indice]= carta
+    
+      
