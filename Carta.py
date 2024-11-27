@@ -23,7 +23,7 @@ class Carta:
     if self.__orientacion == Orientacion.ARRIBA:
       return f"{self.__nombre}\n{self.__descripcion}"
     else:
-      return f"Carta boca abajo"
+      return "Carta boca abajo"
   def __eq__(self, carta):
     if isinstance(carta,Carta):
       if(self.__nombre==carta.__nombre):

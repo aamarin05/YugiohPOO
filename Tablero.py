@@ -1,7 +1,7 @@
 from Carta import *
 from Jugador import *
 class Tablero:
-  def init(self):
+  def __init__(self):
     self.__cartasMonstruo = []
     self.__cartasEspeciales = []
     self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
@@ -19,3 +19,5 @@ class Tablero:
     return self.__cartasMonstruo
   def getEspeciales(self):
     return self.__cartasEspeciales
+  def _str_(self):
+    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
