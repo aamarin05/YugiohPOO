@@ -4,7 +4,7 @@ from Tablero import *
 class Jugador:
   def __init__(self,nombre):
     self.__nombre = nombre
-    self.__deck = Deck.crearDeck(self)
+    self.__deck = Deck.crearDeck()
     self.__puntos = 4000
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
@@ -30,7 +30,7 @@ class Jugador:
     print(f"Usted tiene en su mano:\n{mostrar}")
   def seleccionarCartaMano(self,indice):
     return self.__mano[indice]
-    
+  
   def agregarCartaTablero(self,carta):
     pos= input("Mandar carta boca arriba o abajo?:").lower()
     if pos=="arriba":
