@@ -48,8 +48,8 @@ CartaMonstruo"Golem de Tierra","Un golem de piedra con una defensa impenetrable 
 CartaMonstruo"Halcón Celestial","Un halcón con alas doradas que puede volar a grandes velocidades",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.LUZ,2000,1700
 CartaMonstruo"Vampiro Sombrío","Un vampiro con poderes oscuros que drena la vida de sus enemigos",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.O,TipoAtributo.OSCURIDAD,2100,1600
 CartaMonstruo"Rayo Bestial","Una bestia con poderes eléctricos, capaz de destruir cualquier obstáculo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.VIENTO,2200,1900
-CartaMagica,"Espada de Arturo","Incrementa el ataque de guerreros",Posicion.HORIZONTAL,Orientacion.ABAJO,200,0,TipoMonstruo.G
-CartaMagica,"Escudo de Chamelote","Incrementa la defensa de guerreros",Posicion.HORIZONTAL,Orientacion.ABAJO,0,200,TipoMonstruo.G
+CartaMagica,"Espada de Arturo","Incrementa el ataque de guerrero0,TipoMonstruo.G
+CartaMagica,"Escudo de Chamelote","Incrementa la defensa de guerreros",Posicion.HORIZONTAL,Orientacion.ABAJO,0s",Posicion.HORIZONTAL,Orientacion.ABAJO,200,,200,TipoMonstruo.G
 CartaMagica,"Poder de la Luz","Incrementa el ataque de monstruos de luz",Posicion.HORIZONTAL,Orientacion.ABAJO,300,0,TipoMonstruo.L
 CartaMagica,"Fuerza de la Oscuridad","Incrementa la defensa de monstruos oscuros",Posicion.HORIZONTAL,Orientacion.ABAJO,0,300,TipoMonstruo.D
 CartaMagica,"Llama Ardiente","Incrementa el ataque de monstruos de fuego",Posicion.HORIZONTAL,Orientacion.ABAJO,400,0,TipoMonstruo.O
