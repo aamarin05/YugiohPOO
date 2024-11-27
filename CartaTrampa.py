@@ -11,8 +11,6 @@ class CartaTrampa (Carta):
 
   def getAtributo (self):
       return self.__atributo
-  def activar(self,carta):
-    if carta.getAtributo()== self.__atributo:
-      return f"Carta Trampa:\n{self.__nombre} , detiene el ataque de un monstruo con atributo {self.__atributo}"
-    else:
-      return "Murio carta trampa"
+  def activar(self,cartaAtacante):
+    if self.__atributo == cartaAtacante.getAtributo():
+      print(f"Carta Trampa:\n{self.__nombre} , detiene el ataque de un monstruo con atributo {self.__atributo}")
