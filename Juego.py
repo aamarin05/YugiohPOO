@@ -13,22 +13,26 @@ class Juego():
     self.__turnos = 1
 
   def declararBatalla(self,cartaOponente,cartaAtacante,oponente,atacante):
-    if (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
-        if (cartaOponente.getAtaque() < cartaAtacante.getAtaque()):
-            diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
-            puntos = oponente.getPuntos() - abs (diferencia)
-            oponente.setPuntos(puntos)
-        if (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
-          oponente.getTablero().removerCarta(cartaOponente)
-          atacante.getTablero().removerCarta(cartaAtacante)
-    if (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
-        if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
+    if isinstance(cartaAtacante,CartaMonstruo) and isinstance(cartaOponente,CartaMonstruo):
+      if (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
+          if (cartaOponente.getAtaque() < cartaAtacante.getAtaque()):
+              diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
+              puntos = oponente.getPuntos() - abs (diferencia)
+              oponente.setPuntos(puntos)
+          if (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
             oponente.getTablero().removerCarta(cartaOponente)
-        if  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
-            diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
-            puntos = atacante.getPuntos() - abs (diferencia)
-            atacante.setPuntos(puntos) 
-            cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
+            atacante.getTablero().removerCarta(cartaAtacante)
+      if (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
+          if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
+              oponente.getTablero().removerCarta(cartaOponente)
+          if  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
+              diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
+              puntos = atacante.getPuntos() - abs (diferencia)
+              atacante.setPuntos(puntos) 
+              cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
+    if isinstance(cartaAtacante,CartaMonstruo) and isinstance(cartaOponente,CartaTrampa):
+      cartaOponente.activar()
+      oponente.getTablero().removerCarta(cartaOponente)
     print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()}")
     print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()}")
 
@@ -38,9 +42,15 @@ class Juego():
 
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
-    print(jugador.getTablero())
+    print(jugador.getTablero())#print(jugador.manoImprimir())
     indice = input("Ingrese el indice de la carta: ")
     jugador.agregarCartaTablero(int(indice)+1)
+    contarmagicas= 0
+    for c in jugador.getTablero().getMagicaTrampa():
+      if isinstance(c,CartaMagica):
+        contarmagicas+=1
+    print(f"¡Tienes {contarmagicas} cartas magicas que puedes usar!")
+            
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
     print(jugador.getTablero())
     indiceMa = input("Ingrese el indice de la carta Mágica a usar: ")
