@@ -6,13 +6,17 @@ class Maquina:
     self.__puntos = 4000
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
-  def getMano (self):
-    return self.__mano
+  
+  def getNombre(self):
+    return self.__nombre
   def getPuntos (self):
     return self.__puntos
+  def setPuntos (self, puntos):
+    self.__puntos = puntos
+  def getMano (self):
+    return self.__mano 
   def getTablero(self):
-    return  self.__tablero  
-  
+    return  self.__tablero 
 
   def ordenarMano(self):
     for carta in self.getMano():
@@ -87,7 +91,9 @@ class Maquina:
     return self.__mano[indice]
   
   def agregarCartaTablero(self,indice):
-      carta = self.getMano()[indice-1]
+    print (indice)
+    if indice <= len(self.getMano() and indice>0):
+      carta = self.getMano()[indice]
       if isinstance(carta,CartaMonstruo):
         if len(self.__tablero.getMonstruos()) < 3:
           pos = input("1.Modo Ataque, 2. Modo Defensa:")
@@ -112,6 +118,8 @@ class Maquina:
           print(f"Se ha agregado la carta especial {carta} al tablero")
         else:
           print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
+    else:
+      print("Esa carta no se encuentra en mano")
 
   def seleccionarCartaTablero(self,indice):
     return self.__tablero[indice]

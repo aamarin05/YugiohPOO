@@ -38,7 +38,9 @@ class Jugador:
     return self.__mano[indice]
   
   def agregarCartaTablero(self,indice):
-      carta = self.getMano()[indice-1]
+    print (indice)
+    if indice <= len(self.getMano() and indice>0):
+      carta = self.getMano()[indice]
       if isinstance(carta,CartaMonstruo):
         if len(self.__tablero.getMonstruos()) < 3:
           pos = input("1.Modo Ataque, 2. Modo Defensa:")
@@ -63,6 +65,8 @@ class Jugador:
           print(f"Se ha agregado la carta especial {carta} al tablero")
         else:
           print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
+    else:
+      print("Esa carta no se encuentra en mano")
 
   def __str__ (self):
     print (f"{self.__nombre}: {self.__puntos} Lp\n{self.__tablero._str_()}")
