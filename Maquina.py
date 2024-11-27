@@ -45,14 +45,18 @@ class Maquina (Jugador):
   def usarEspeciales(self):
     especiales = self.__tablero.getEspeciales()
     monstruos = self.__tablero.getMonstruos()
+    cartasUsadas =[]
     for carta in especiales:
       for monstruo in monstruos:
-        if isinstance(carta,CartaMagica):
-          if monstruo.getTipo() == carta.getTipo():
-            carta.usar(monstruo)
-        if isinstance(carta, CartaTrampa):
-          if monstruo.getAtributo() == carta.getAtributo():
-            carta.usar(monstruo)
+        if carta not in cartasUsadas:
+          if isinstance(carta,CartaMagica):
+            if monstruo.getTipo() == carta.getTipo():
+              carta.usar(monstruo)
+              cartasUsadas.append(carta)
+          if isinstance(carta, CartaTrampa):
+            if monstruo.getAtributo() == carta.getAtributo():
+              carta.usar(monstruo)
+              cartasUsadas.append(carta)
 
   
 
