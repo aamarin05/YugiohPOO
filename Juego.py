@@ -14,6 +14,15 @@ class Juego():
 
   def declararBatalla(self,cartaOponente,cartaAtacante,oponente,atacante):
     if isinstance(cartaAtacante,CartaMonstruo) and isinstance(cartaOponente,CartaMonstruo):
+      cartasTrampa=[]
+      for c in oponente.getMagicaTrampa():
+        if isinstance(c,CartaTrampa):
+          cartasTrampa.append(c)
+      if len(cartasTrampa)>0:
+        atributos= []
+        for ct in cartasTrampa:
+          atributos.append(ct.getAtributo())
+        cartasTrampa[atributos.index(cartaOponente.getAtributo())].activar(cartaAtacante)  
       if (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
           if (cartaOponente.getAtaque() < cartaAtacante.getAtaque()):
               diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
@@ -30,9 +39,6 @@ class Juego():
               puntos = atacante.getPuntos() - abs (diferencia)
               atacante.setPuntos(puntos) 
               cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
-    if isinstance(cartaAtacante,CartaMonstruo) and isinstance(cartaOponente,CartaTrampa):
-      cartaAtacante.activar()
-      oponente.getTablero().removerCarta(cartaOponente)
     print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()}")
     print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()}")
 
