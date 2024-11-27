@@ -1,5 +1,8 @@
 from Carta import *
 from Jugador import *
+from CartaMonstruo import*
+from CartaMagica import *
+from CartaTrampa import *
 class Tablero:
   def __init__(self):
     self.__cartasMonstruo = []
