@@ -31,15 +31,14 @@ class Tablero:
     return tablero
 
 
-
-      
-  def seleccionarCarta(self,indice):
-    print(self._str_())
-    return self.__cartasJugador[1,indice]#Retorna la Carta del indice indicado
   def removerCarta(self,carta):
-    for f,c in self.__cartasJugador:
-      if self.__cartasJugador[f][c] == carta:
-        self.__cartasJugador.remover(self.__cartasJugador[f][c])
+    if isinstance(carta, CartaMonstruo):
+      if carta in self.__cartasMonstruo:
+        self.__cartasMonstruo.remove(carta)
+    else:
+      if carta in self.__cartasEspeciales:
+          self.__cartasEspeciales.remove(carta)
+
   def getMonstruos(self):
     return self.__cartasMonstruo
   def getEspeciales(self):

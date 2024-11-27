@@ -21,11 +21,15 @@ class CartaMagica (Carta):
   def usar (self,carta_monstruo):
     if self.__tipo == carta_monstruo.getTipo():
       if self.__defensa == 0:
-        nuevo_ataque = carta_monstruo.getAtaque() + self._ataque
+        nuevo_ataque = carta_monstruo.getAtaque() + self.__ataque
         carta_monstruo.setAtaque(nuevo_ataque)
+        print(self.__str__)
       if self.__ataque == 0:
         nueva_defensa = carta_monstruo.getDefensa() + self.__defensa
         carta_monstruo.setDefensa(nueva_defensa)
+        print(self.__str__)
+    else:
+      print("No se puede usar, no son del mismo tipo Monstruo")
   
   def destruir (self,carta_monstruo):#NOT SURE
     if carta_monstruo.muere():
