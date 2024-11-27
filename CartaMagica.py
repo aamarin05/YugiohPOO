@@ -31,6 +31,5 @@ class CartaMagica (Carta):
     if carta_monstruo.muere():
       return True
 
-
   def __str__(self):
     return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"

@@ -35,15 +35,6 @@ class Juego():
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos
     oponente.setPuntos(abs(puntos))
-  
-  def mFasePrincipal(self):
-    #COLOCAR LAS CARTAS EN EL TABLERO ESTRATÉGICAMENTE. ARRIBA ATAQUE, VERTICAL ATAQUE
-    self.__maquina.ordenarMano()
-
-
-
-
-
 
 
 #OPCIONES DEL JUGADOR
@@ -94,39 +85,40 @@ class Juego():
       if self.__turnos == 1:
         print(f"Mano del jugador: {self.__jugador.manoImprimir()}")
         print("Crea tu tablero")
-      while True:
+      pregunta = ""
+      while pregunta != "2" :
         pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- CONTINUAR A LA SIGUIENTE FASE")
         if pregunta == "1":
           print(f"Mano del jugador: {self.__jugador.getMano()}")
           indice = input("Escriba el número de la carta de su mano para agregarla al tablero: ")
           self.__jugador.agregarCartaTablero(int(indice)+1)
-        elif pregunta == "2":
-          break
         else:
           print("Ingrese una opción válida")
+
       #MAQUINA
-      self.__maquina.fasePrincipal()
+      self.__maquina.mFasePrincipal()
 
       print("Fase Batalla")
       #Jugador
       print(self.__jugador)
       print(self.__maquina)
       if self.__turnos == 1:
-        while True:
+        pregunta = " "
+        while pregunta != "":
           pregunta = input("Ingresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nEnter para seguir")
           pregunta = pregunta.lower()
           if pregunta == "1":
             self.opcion1(self.__jugador)
           elif pregunta == "2":
             self.opcion2(self.__jugador)
-          elif pregunta == "":
-            self.__maquina.faseBatalla()
-            break
           else: 
             print("Ingrese opción válida")
+        self.__maquina.usarEspeciales()
+        self.__maquina.mDeclararBatalla()
       else:
         cartasUsadas = []
-        while True:
+        pregunta = " "
+        while pregunta != "":
           pregunta = input("Ingresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nOPCION 3.- DECLARAR BATALLA \nEnter para seguir")
           pregunta = pregunta.lower()
           if pregunta == "1":
@@ -136,10 +128,11 @@ class Juego():
           elif pregunta == "3":
             cartaUsada = self.opcion3(self.__jugador,self.__maquina,cartasUsadas)
             cartasUsadas.append(cartaUsada)
-          elif pregunta == "":
-            self.__maquina.faseBatalla()
-            cartasUsadas = []
           else: 
             print("Ingrese opción válida")
-      
+        self.__maquina.faseBatalla()
+        cartasUsadas = [] 
       self.__turnos +=1
+#FASE BATALLA DE LA MAQUINA
+  def declararBatalla(self, turno):
+    

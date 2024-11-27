@@ -20,3 +20,5 @@ class Tablero:
         self.__cartasjugador[f][c]= "No hay Carta"
   def getMonstruos(self):
     return self.__cartasMonstruo
+  def getEspeciales(self):
+    return self.__cartasEspeciales
