@@ -27,12 +27,12 @@ class CartaMonstruo(Carta):
 
     def cambiarPosicion(self,posicion):
         if self.getOrientacion() == Orientacion.ARRIBA:
-            self.getPosicion() = posicion
+            self.setPosicion(posicion)
     def modoAtaque(self):
-        self.getOrientacion() = Orientacion.ARRIBA
-        self.getPosicion() = Posicion.VERTICAL
+        self.setOrientacion(Orientacion.ARRIBA)
+        self.setPosicion(Posicion.VERTICAL)
     def modoDefensa(self):
-        self.getOrientacion() = Orientacion.ABAJO
+        self.setOrientacion(Orientacion.ABAJO)
     def eModoAtaque(self):
         if self.getPosicion()== Posicion.VERTICAL:
             return True

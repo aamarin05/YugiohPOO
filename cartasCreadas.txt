@@ -26,7 +26,7 @@ CartaMonstruo,"Lanceros Zombis","Un grupo de lanceros zombis que luchan en conju
 CartaMonstruo,"Bestia Mística","Una criatura mística con poderosos ataques físicos",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.TIERRA,1900,1700
 CartaMonstruo,"Dragón Alado de la Oscuridad","Un dragón que controla las sombras para atacar a su oponente",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.D,TipoAtributo.OSCURIDAD,2800,2400
 CartaMonstruo,"Guerrero Celestial","Un guerrero con poderes místicos que defiende el reino",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.G,TipoAtributo.LUZ,2200,2000
-CartaMonstruo,"Luchador Imparable","Un luchador con gran agilidad y fuerza, capaz de superar cualquier obstáculo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.G,TipoAtributo.FUEGO,2300,1500
+CartaMonstruo,"Luchador Imparable","Un luchador con gran agilidad y fuerza capaz de superar cualquier obstáculo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.G,TipoAtributo.FUEGO,2300,1500
 CartaMonstruo,"Demonio del Abismo","Un demonio con un poder destructivo capaz de destruir todo lo que toca",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.O,TipoAtributo.OSCURIDAD,2600,2300
 CartaMonstruo,"Caballero de Hierro","Un caballero blindado con gran defensa",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.G,TipoAtributo.TIERRA,1500,2500
 CartaMonstruo,"Draco Espacial","Un dragón que viaja entre las estrellas con gran rapidez",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.D,TipoAtributo.VIENTO,2200,1700
@@ -43,11 +43,11 @@ CartaMonstruo,"Espíritu del Guerrero","El espíritu de un guerrero que regresa 
 CartaMonstruo,"Lobo Fantasma","Un lobo que acecha en las sombras y ataca sin previo aviso",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.OSCURIDAD,1600,1200
 CartaMonstruo,"Tiburón Dragón","Un monstruo acuático y dracónico con gran capacidad de ataque y defensa",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.D,TipoAtributo.AGUA,2200,1800
 CartaMonstruo,"Demonio Celestial","Un demonio con poderes sobrenaturales que domina el cielo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.O,TipoAtributo.LUZ,2400,2000
-CartaMonstruo,"Sombra del Zombi","Un zombi que se mueve sigilosamente, atacando en la oscuridad",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.Z,TipoAtributo.OSCURIDAD,1700,1100
+CartaMonstruo,"Sombra del Zombi","Un zombi que se mueve sigilosamente atacando en la oscuridad",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.Z,TipoAtributo.OSCURIDAD,1700,1100
 CartaMonstruo"Golem de Tierra","Un golem de piedra con una defensa impenetrable y gran resistencia",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.TIERRA,2500,2400
 CartaMonstruo"Halcón Celestial","Un halcón con alas doradas que puede volar a grandes velocidades",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.LUZ,2000,1700
 CartaMonstruo"Vampiro Sombrío","Un vampiro con poderes oscuros que drena la vida de sus enemigos",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.O,TipoAtributo.OSCURIDAD,2100,1600
-CartaMonstruo"Rayo Bestial","Una bestia con poderes eléctricos, capaz de destruir cualquier obstáculo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.VIENTO,2200,1900
+CartaMonstruo"Rayo Bestial","Una bestia con poderes eléctricos capaz de destruir cualquier obstáculo",Posicion.VERTICAL,Orientacion.ABAJO,TipoMonstruo.B,TipoAtributo.VIENTO,2200,1900
 CartaMagica,"Espada de Arturo","Incrementa el ataque de guerreros",Posicion.HORIZONTAL,Orientacion.ABAJO,200,0,TipoMonstruo.G
 CartaMagica,"Escudo de Chamelote","Incrementa la defensa de guerreros",Posicion.HORIZONTAL,Orientacion.ABAJO,0,200,TipoMonstruo.G
 CartaMagica,"Poder de la Luz","Incrementa el ataque de monstruos de luz",Posicion.HORIZONTAL,Orientacion.ABAJO,300,0,TipoMonstruo.L
