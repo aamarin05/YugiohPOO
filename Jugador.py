@@ -16,8 +16,9 @@ class Jugador:
   def setPuntos (self, puntos):
     self.__puntos = puntos
   def getMano (self):
-    return self.__mano
-  
+    return self.__mano 
+  def getTablero(self):
+    return  self.__tablero  
 
   def tomarCarta(self):
     carta=self.__deck.pop()
@@ -28,24 +29,24 @@ class Jugador:
     mostrar= ""
     for i in range(len(self.__mano)):  
         carta = self.__mano[i]         
-        mostrar += f"{i + 1}. {carta.__str__()}\n"
+        mostrar += f"{i + 1}. {carta}\n"
     return f"Usted tiene en su mano:\n{mostrar}"
 
   def seleccionarCartaMano(self,indice):
     return self.__mano[indice]
   
   def agregarCartaTablero(self,indice):
-      carta = self.getMano()[indice]
+      carta = self.getMano()[indice-1]
       if isinstance(carta,CartaMonstruo):
         if len(self.__tablero.getMonstruos()) < 3:
-          pos = input("1.Modo Ataque, 2. Modo Defensa:").lower()
-          while pos != "1" or pos !="2":
+          pos = input("1.Modo Ataque, 2. Modo Defensa:")
+          while (pos != "1") and (pos !="2"):
             print("Ingrese (1 o 2)")
-            pos = input("1.Modo Ataque, 2. Modo Defensa:").lower()
+            pos = input("1.Modo Ataque, 2. Modo Defensa:")
           if pos == "1":
             carta.modoAtaque()
             self.__tablero.getMonstruos().append(carta)
-          if pos == "2":
+          elif pos == "2":
             carta.modoDefensa()
             self.__tablero.getMonstruos().append(carta)
           print(f"Se ha agregado la carta monstruo {carta} al tablero")
@@ -57,9 +58,9 @@ class Jugador:
           print(f"Se ha agregado la carta especial {carta} al tablero")
         else:
           print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
-  def __str__(self):
+  def __str__ (self):
     print (f"{self.__nombre}: {self.__puntos} Lp\n{self.__tablero._str_()}")
     if self.__nombre=="Maquina":
-      print(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str()}]\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]")  
+      return(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{self.getTablero().getCartas()[1][0]}] [{self.getTablero().getCartas()[1][1]}] [{self.getTablero().getCartas()[1][2]}]\nMonstruo: [{self.getTablero().getCartas()[0][0]}] [{self.getTablero().getCartas()[0][1]}] [{self.getTablero().getCartas()[0][2]}]")  
     else:
-      print(f"Monstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]\n{self.__nombre} - Lp:{self.__puntos}")
+      return(f"Monstruo: [{self.getTablero().getCartas()[0][0]}] [{self.getTablero().getCartas()[0][1]}] [{self.getTablero().getCartas()[0][2]}]\nEspeciales: [{self.getTablero().getCartas()[1][0]}] [{self.getTablero().getCartas()[1][1]}] [{self.getTablero().getCartas()[1][2]}]\n{self.__nombre} - Lp:{self.__puntos}")

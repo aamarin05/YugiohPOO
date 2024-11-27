@@ -2,22 +2,22 @@ from Carta import *
 from Jugador import *
 class Tablero:
   def __init__(self):
-    self.__cartasMonstruo = []
-    self.__cartasEspeciales = []
+    self.__cartasMonstruo = ["No hay Carta", "No hay Carta", "No hay Carta"]
+    self.__cartasEspeciales = ["No hay Carta", "No hay Carta", "No hay Carta"]
     self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
   def _str_(self):
-    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
+    print(f"Tablero\nMonstruo: [{self.__cartasJugador[0][0]}] [{self.__cartasJugador[0][1]}] [{self.__cartasJugador[0][2]}]\nEspeciales: [{self.__cartasJugador[1][0]}] [{self.__cartasJugador[1][1]}] [{self.__cartasJugador[1][2]}]")
     
   def seleccionarCarta(self,indice):
     print(self._str_())
-    return self.__cartasjugador[1,indice]#Retorna la Carta del indice indicado
+    return self.__cartasJugador[1,indice]#Retorna la Carta del indice indicado
   def removerCarta(self,carta):
-    for f,c in self.__cartasjugador:
-      if self.__cartasjugador[f][c] == carta:
-        self.__cartasjugador[f][c]= "No hay Carta"
+    for f,c in self.__cartasJugador:
+      if self.__cartasJugador[f][c] == carta:
+        self.__cartasJugador[f][c]= "No hay Carta"
   def getMonstruos(self):
     return self.__cartasMonstruo
   def getEspeciales(self):
     return self.__cartasEspeciales
-  def _str_(self):
-    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
+  def getCartas(self):
+    return self.__cartasJugador
