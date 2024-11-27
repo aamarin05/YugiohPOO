@@ -8,5 +8,5 @@ if __name__ == "__main__":
   nombre = input ("Por favor, ingrese su nombre: ")
   jugador = Jugador(nombre)
   maquina = Maquina()
-  juego = Juego(jugador, maquina)
+  juego = Juego(maquina, jugador)
   juego.jugar()

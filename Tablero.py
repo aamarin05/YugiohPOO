@@ -5,19 +5,44 @@ class Tablero:
     self.__cartasMonstruo = []
     self.__cartasEspeciales = []
     self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
+
   def _str_(self):
-    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
-    
+    monstruos = []
+    especiales = []
+
+    for i in range(3):
+        if i < len(self.__cartasMonstruo):
+            monstruos.append(str(self.__cartasMonstruo[i]))
+        else:
+            monstruos.append("No hay cartas")
+
+    for i in range(3):
+        if i < len(self.__cartasEspeciales):
+            especiales.append(str(self.__cartasEspeciales[i]))
+        else:
+            especiales.append("No hay cartas")
+
+
+    tablero = (
+        f"Tablero\n"
+        f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\n"
+        f"Especiales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]"
+    )
+    return tablero
+
+
+
+      
   def seleccionarCarta(self,indice):
     print(self._str_())
-    return self.__cartasjugador[1,indice]#Retorna la Carta del indice indicado
+    return self.__cartasJugador[1,indice]#Retorna la Carta del indice indicado
   def removerCarta(self,carta):
-    for f,c in self.__cartasjugador:
-      if self.__cartasjugador[f][c] == carta:
-        self.__cartasjugador[f][c]= "No hay Carta"
+    for f,c in self.__cartasJugador:
+      if self.__cartasJugador[f][c] == carta:
+        self.__cartasJugador.remover(self.__cartasJugador[f][c])
   def getMonstruos(self):
     return self.__cartasMonstruo
   def getEspeciales(self):
     return self.__cartasEspeciales
-  def _str_(self):
-    print(f"Tablero\nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]\nEspeciales: [{self.__cartasjugador[1][0].__str__()}] [{self.__cartasjugador[1][1].__str__()}] [{self.__cartasjugador[1][2].__str__()}]")
+  def getCartas(self):
+    return self.__cartasJugador

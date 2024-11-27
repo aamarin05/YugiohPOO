@@ -26,4 +26,5 @@ class Deck:
         l_tram.append(c)
     archivo.close()
     deck=rd.sample(l_mons,20)+rd.sample(l_mag,5)+rd.sample(l_tram,5)
+    rd.shuffle(deck)
     return deck
