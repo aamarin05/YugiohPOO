@@ -37,6 +37,35 @@ class Juego():
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos
     oponente.setPuntos(abs(puntos))
 
+  #FASE BATALLA DE LA MAQUINA
+  def mBatalla(self):
+    monstruosJugador = self.__jugador.getTablero().getMonstruos()
+    monstruosMaquina = self.__maquina.getTablero().getMonstruos()
+    monstruosAtaqueJ = []
+    for monstruo in monstruosJugador:
+      if monstruo.getOrientacion() == Orientacion.ARRIBA:
+        monstruosAtaqueJ.append(monstruo)
+    usadas = []
+    for cartaM in monstruosMaquina:
+        if cartaM not in usadas:
+          if cartaM.emodoAtaque():
+            if monstruosJugador == []:
+              self.batallaDirecta(cartaM,self.__jugador)
+              usadas.append(cartaM)   
+            for cartaJ in monstruosAtaqueJ:
+              if cartaM.getAtaque() > cartaJ.getAtaque():
+                self.declararBatalla(cartaJ,cartaM,self.__jugador,self.__maquina)
+                usadas.append(cartaM)  
+              elif cartaM.getAtaque() > cartaJ.getDefensa():
+                self.declararBatalla(cartaJ,cartaM,self.__jugador,self.__maquina)
+                usadas.append(cartaM)  
+              elif cartaM.getDefensa() < cartaJ.getAtaque():
+                self.declararBatalla(cartaJ,cartaM,self.__jugador,self.__maquina)
+                usadas.append(cartaM)  
+              elif cartaM.getAtaque() == cartaJ.getAtaque():
+                self.declararBatalla(cartaJ,cartaM,self.__jugador,self.__maquina)
+                usadas.append(cartaM)  
+
 
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
@@ -117,7 +146,7 @@ class Juego():
             print("Ingrese opción válida")
         #MAQUINA
         self.__maquina.usarEspeciales()
-        self.__maquina.mDeclararBatalla()
+        self.mBatalla()
       else:
         #JUGADOR
         cartasUsadas = []
@@ -136,26 +165,6 @@ class Juego():
             print("Ingrese opción válida")
         #MAQUINA
         self.__maquina.usarEspeciales()
-        self.__maquina.faseBatalla()
+        self.mBatalla()
         cartasUsadas = [] 
         self.__turnos +=1
-
-#FASE BATALLA DE LA MAQUINA
-  def mBatalla(self):
-    monstruosJugador = self.__jugador.getTablero().getMonstruos()
-    monstruosMaquina = self.__maquina.getTablero().getMonstruos()
-    monstruosAtaqueJ = []
-    for monstruo in monstruosJugador:
-      if monstruo.getOrientacion() == Orientacion.ARRIBA:
-        monstruosAtaqueJ.append(monstruo)
-
-    for carta in monstruosAtaqueJ:
-      for monstruo in monstruosMaquina:
-          if monstruo.emodoAtaque():
-            if monstruosJugador == []:
-              self.batallaDirecta(monstruo,self.__jugador)   
-            if carta.getAtaque() < monstruo.getAtaque():
-
-            
-
-    
