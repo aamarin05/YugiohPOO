@@ -2,6 +2,7 @@ from CartaMonstruo import *
 from CartaMagica import *
 from CartaTrampa import *
 from Posicion import *
+from Orientacion import *
 from Jugador import *
 from Maquina import *
 
@@ -36,17 +37,20 @@ class Juego():
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos
     oponente.setPuntos(abs(puntos))
 
+
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
     print(jugador.getTablero())
+    print(jugador.manoImprimir())
     indice = input("Ingrese el indice de la carta: ")
     jugador.agregarCartaTablero(int(indice)+1)
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
     print(jugador.getTablero())
+    print(jugador.manoImprimir())
     indiceMa = input("Ingrese el indice de la carta Mágica a usar: ")
-    cartaMa = jugador.getTablero().seleccionarCarta(int(indiceMa)+1)
+    cartaMa = jugador.seleccionarCartaTablero(int(indiceMa)+1)
     indiceMo = input("Ingrese el indice de la carta Monstruo a mejorar")
-    cartaMo = jugador.getTablero().seleccionarCarta(int(indiceMo)+1)
+    cartaMo = jugador.seleccionarCartaTablero(int(indiceMo)+1)
     if (isinstance(cartaMa, CartaMagica)):
       cartaMa.usar(cartaMo)
     if (isinstance(cartaMa, CartaTrampa)):
@@ -80,41 +84,45 @@ class Juego():
       print("Fase principal")
       #JUGADOR
       if self.__turnos == 1:
-        print(f"Mano del jugador: {self.__jugador.getMano()}")
+        print(f"Mano del jugador: {self.__jugador.manoImprimir()}")
         print("Crea tu tablero")
-      while True:
+      pregunta = ""
+      while pregunta != "2" :
         pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- CONTINUAR A LA SIGUIENTE FASE")
         if pregunta == "1":
           print(f"Mano del jugador: {self.__jugador.getMano()}")
           indice = input("Escriba el número de la carta de su mano para agregarla al tablero: ")
           self.__jugador.agregarCartaTablero(int(indice)+1)
-        elif pregunta == "2":
-          break
         else:
           print("Ingrese una opción válida")
+
       #MAQUINA
-      self.__maquina.fasePrincipal()
+      self.__maquina.mFasePrincipal()
 
       print("Fase Batalla")
       #Jugador
       print(self.__jugador)
       print(self.__maquina)
       if self.__turnos == 1:
-        while True:
+        #JUGADOR
+        pregunta = " "
+        while pregunta != "":
           pregunta = input("Ingresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nEnter para seguir")
           pregunta = pregunta.lower()
           if pregunta == "1":
             self.opcion1(self.__jugador)
           elif pregunta == "2":
             self.opcion2(self.__jugador)
-          elif pregunta == "":
-            self.__maquina.faseBatalla()
-            break
           else: 
             print("Ingrese opción válida")
+        #MAQUINA
+        self.__maquina.usarEspeciales()
+        self.__maquina.mDeclararBatalla()
       else:
+        #JUGADOR
         cartasUsadas = []
-        while True:
+        pregunta = " "
+        while pregunta != "":
           pregunta = input("Ingresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nOPCION 3.- DECLARAR BATALLA \nEnter para seguir")
           pregunta = pregunta.lower()
           if pregunta == "1":
@@ -124,10 +132,30 @@ class Juego():
           elif pregunta == "3":
             cartaUsada = self.opcion3(self.__jugador,self.__maquina,cartasUsadas)
             cartasUsadas.append(cartaUsada)
-          elif pregunta == "":
-            self.__maquina.faseBatalla()
-            cartasUsadas = []
           else: 
             print("Ingrese opción válida")
-      
-      self.__turnos +=1
+        #MAQUINA
+        self.__maquina.usarEspeciales()
+        self.__maquina.faseBatalla()
+        cartasUsadas = [] 
+        self.__turnos +=1
+
+#FASE BATALLA DE LA MAQUINA
+  def mBatalla(self):
+    monstruosJugador = self.__jugador.getTablero().getMonstruos()
+    monstruosMaquina = self.__maquina.getTablero().getMonstruos()
+    monstruosAtaqueJ = []
+    for monstruo in monstruosJugador:
+      if monstruo.getOrientacion() == Orientacion.ARRIBA:
+        monstruosAtaqueJ.append(monstruo)
+
+    for carta in monstruosAtaqueJ:
+      for monstruo in monstruosMaquina:
+          if monstruo.emodoAtaque():
+            if monstruosJugador == []:
+              self.batallaDirecta(monstruo,self.__jugador)   
+            if carta.getAtaque() < monstruo.getAtaque():
+
+            
+
+    

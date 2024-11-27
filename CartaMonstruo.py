@@ -30,6 +30,7 @@ class CartaMonstruo(Carta):
         self.__posicion = posicion
   def modoAtaque(self):
       self.__orientacion = Orientacion.ARRIBA
+      self.__posicion = Posicion.VERTICAL
   def modoDefensa(self):
       self.__orientacion = Orientacion.ABAJO
   def muere(self): #NOT SURE

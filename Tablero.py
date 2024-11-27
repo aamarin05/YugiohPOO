@@ -2,7 +2,9 @@ from Carta import *
 from Jugador import *
 class Tablero:
   def init(self):
-    self.__cartasjugador = [["No hay Carta", "No hay Carta", "No hay Carta"], ["No hay Carta", "No hay Carta", "No hay Carta"]] 
+    self.__cartasMonstruo = []
+    self.__cartasEspeciales = []
+    self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
   def _str_(self):
     print(f"Tablero
             \nMonstruo: [{self.__cartasjugador[0][0].__str__()}] [{self.__cartasjugador[0][1].__str__()}] [{self.__cartasjugador[0][2].__str__()}]
@@ -16,3 +18,7 @@ class Tablero:
     for f,c in self.__cartasjugador:
       if self.__cartasjugador[f][c] == carta:
         self.__cartasjugador[f][c]= "No hay Carta"
+  def getMonstruos(self):
+    return self.__cartasMonstruo
+  def getEspeciales(self):
+    return self.__cartasEspeciales
