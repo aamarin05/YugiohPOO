@@ -45,4 +45,7 @@ class CartaMonstruo(Carta):
         modo= "ATAQUE"
     else:
         modo= "DEFENSA"
-    return f"Carta Monstruo\nModo:{modo}\n{super().__str__()}\nATQ:{self.__ataque}\nDEF:{self.__defensa}"
+    if self.__orientacion==Orientacion.ARRIBA:
+        return f"Carta Monstruo\nModo:{modo}\n{super().__str__()}\nATQ:{self.__ataque}\nDEF:{self.__defensa}"
+    else:
+        return "Carta boca abajo"
