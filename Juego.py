@@ -134,6 +134,7 @@ class Juego():
 
 
   def jugar(self):
+    print(f"\n Empieza {self.__jugador.getNombre()}")
     while (self.__jugador.getPuntos() > 0 and self.__maquina.getPuntos() > 0):
       print (f"\nTurno {self.__turnos}")
 
