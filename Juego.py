@@ -79,37 +79,41 @@ class Juego():
 
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
-    print(jugador.getTablero())
+    print(jugador.getTablero()._str_())
     print(jugador.manoImprimir())
     indice = input("Ingrese el indice de la carta: ")
-    jugador.agregarCartaTablero(int(indice))
+    if indice-1 <= len(jugador.getTablero):
+      jugador.agregarCartaTablero(int(indice))
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
-    print(jugador.getTablero())
-    print(jugador.manoImprimir())
-    indiceMa = input("Ingrese el indice de la carta Mágica a usar: ")
-    cartaMa = jugador.seleccionarCartaTablero(int(indiceMa)+1)
+    print(jugador.getTablero()._str_())
+    indiceMa = input("Ingrese el indice de la carta Mágica o Trampa a usar: ")
+    cartaMa = jugador.getTablero().getEspeciales()[(int(indiceMa)-1)]
     indiceMo = input("Ingrese el indice de la carta Monstruo a mejorar")
-    cartaMo = jugador.seleccionarCartaTablero(int(indiceMo)+1)
+    cartaMo = jugador.getTablero().getMonstruos()[(int(indiceMo)-1)]
     if (isinstance(cartaMa, CartaMagica)):
-      cartaMa.usar(cartaMo)
+      if (isinstance(cartaMo, CartaMonstruo)):
+        cartaMa.usar(cartaMo)
+      else:
+        print("No hay carta monstruo en ese indice")
     if (isinstance(cartaMa, CartaTrampa)):
-      cartaMa.usar(cartaMo)
+      if (isinstance(cartaMo, CartaMonstruo)):
+        cartaMa.usar(cartaMo)
+      else:
+        print("No hay carta monstruo en ese indice")
+    else:
+      print("No hay carta especial en ese indice")
   def opcion3 (self,jugador,oponente,cartasUsadas):
     print(jugador)
     print(oponente)
     indiceJugador = input("Ingrese indice de su carta montruo que declara batalla: ")
-    cartaJugador = jugador.getTablero().getMonstruos()[int(indiceJugador)+1]
+    cartaJugador = jugador.getTablero().getMonstruos()[int(indiceJugador)-1]
     if cartaJugador not in cartasUsadas:
-      c = 0
-      for carta in oponente.getTablero().getMonstruos():
-        if carta == "No hay Carta":
-          c+=1
-      if c == 3:
+      if(oponente.getTablero().getMonstruos() == []):
         self.batallaDirecta(cartaJugador,self.__maquina)
         print(f"{cartaJugador} tuvo una batalla directa contra {self.__maquina}")
       else:
         indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
-        cartaOponente = oponente.getTablero().getMonstruos()[int(indiceOponente)+1]
+        cartaOponente = oponente.getTablero().getMonstruos()[int(indiceOponente)-1]
         self.declararBatalla(cartaOponente,cartaJugador,oponente,jugador)
       return cartaJugador
     else:

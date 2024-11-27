@@ -97,22 +97,42 @@ class Maquina:
           if pos == "1":
             carta.modoAtaque()
             self.__tablero.getMonstruos().append(carta)
+            self.__mano.remove(carta)
           elif pos == "2":
             carta.modoDefensa()
             self.__tablero.getMonstruos().append(carta)
+            self.__mano.remove(carta)
           print(f"Se ha agregado la carta monstruo {carta} al tablero")
         else:
           print("Espacio para carta tipo Monstruo lleno en el tablero")
-      elif isinstance(carta,CartaMagica) or isinstance(carta,CartaMonstruo):
+      else:
         if len(self.__tablero.getEspeciales()) < 3:
           self.__tablero.getEspeciales().append(carta)
+          self.__mano.remove(carta)
           print(f"Se ha agregado la carta especial {carta} al tablero")
         else:
           print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
+
+  def seleccionarCartaTablero(self,indice):
+    return self.__tablero[indice]
   def __str__ (self):
     print (f"{self.__nombre}: {self.__puntos} Lp\n{self.__tablero._str_()}")
     if self.__nombre=="Maquina":
-      return(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{self.getTablero().getCartas()[1][0]}] [{self.getTablero().getCartas()[1][1]}] [{self.getTablero().getCartas()[1][2]}]\nMonstruo: [{self.getTablero().getCartas()[0][0]}] [{self.getTablero().getCartas()[0][1]}] [{self.getTablero().getCartas()[0][2]}]")  
+      monstruos = []
+      especiales = []
+
+      for i in range(3):
+          if i < len(self.__tablero.getMonstruos()):
+              monstruos.append(str(self.__tablero.getMonstruos()[i]))
+          else:
+              monstruos.append("No hay cartas")
+
+      for i in range(3):
+          if i < len(self.__tablero.getEspeciales()):
+              especiales.append(str(self.__tablero.getEspeciales()[i]))
+          else:
+              especiales.append("No hay cartas")
+      return(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\nMonstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]")  
     else:
-      return(f"Monstruo: [{self.getTablero().getCartas()[0][0]}] [{self.getTablero().getCartas()[0][1]}] [{self.getTablero().getCartas()[0][2]}]\nEspeciales: [{self.getTablero().getCartas()[1][0]}] [{self.getTablero().getCartas()[1][1]}] [{self.getTablero().getCartas()[1][2]}]\n{self.__nombre} - Lp:{self.__puntos}")
+      return(f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]")
 
