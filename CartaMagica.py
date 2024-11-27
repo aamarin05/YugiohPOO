@@ -33,4 +33,4 @@ class CartaMagica (Carta):
 
 
   def __str__(self):
-    return f"{super().__str__()}\n{self.__ataque}\n{self.__defensa}"
+    return f"Carta Magica\n{super().__str__()}\nATQ:{self.__ataque}\nDEF:{self.__defensa}"
