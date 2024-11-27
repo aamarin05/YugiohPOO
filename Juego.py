@@ -165,7 +165,7 @@ class Juego():
         #JUGADOR
         pregunta = " "
         while pregunta != "":
-          pregunta = input("\nIngresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nEnter.- para seguir: ")
+          pregunta = input("\nIngresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nEnter.- para seguir: \n")
           pregunta = pregunta.lower()
           if pregunta == "1":
             self.opcion1(self.__jugador)
@@ -181,7 +181,7 @@ class Juego():
         cartasUsadas = []
         pregunta = " "
         while pregunta != "":
-          pregunta = input("\nIngresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nOPCION 3.- DECLARAR BATALLA \nEnter.- para seguir: ")
+          pregunta = input("\nIngresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nOPCION 3.- DECLARAR BATALLA \nEnter.- para seguir: \n")
           pregunta = pregunta.lower()
           if pregunta == "1":
             self.opcion1(self.__jugador)
@@ -198,5 +198,10 @@ class Juego():
       cartasUsadas = [] 
       self.__turnos +=1
       print("\nRESULTADOS\n")
-      print(self.__maquina)
-      print(self.__jugador)
+      print(self.__maquina.__str__())
+      print(self.__jugador.__str__())
+      if self.__jugador.getPuntos() <= 0:
+        print("\nMAQUINA GANA!!")
+      if self.__maquina.getPuntos() <= 0:
+        print(f"\n{self.__jugador.getNombre()} GANA!!")
+
