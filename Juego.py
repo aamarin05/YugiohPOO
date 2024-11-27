@@ -23,7 +23,7 @@ class Juego():
         for ct in cartasTrampa:
           atributos.append(ct.getAtributo())
         cartasTrampa[atributos.index(cartaOponente.getAtributo())].activar(cartaAtacante)  
-      if (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
+      elif (cartaOponente.eModoAtaque() and cartaAtacante.eModoAtaque()):
           if (cartaOponente.getAtaque() < cartaAtacante.getAtaque()):
               diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
               puntos = oponente.getPuntos() - abs (diferencia)
@@ -31,7 +31,7 @@ class Juego():
           if (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
             oponente.getTablero().removerCarta(cartaOponente)
             atacante.getTablero().removerCarta(cartaAtacante)
-      if (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
+      elif (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
           if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
               oponente.getTablero().removerCarta(cartaOponente)
           if  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
