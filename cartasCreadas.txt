@@ -68,18 +68,18 @@ CartaMagica,"Luz Brillante","Aumenta el ataque de los monstruos de luz",Posicion
 CartaMagica,"Viento Cortante","Aumenta el ataque de los monstruos de viento",Posicion.HORIZONTAL,Orientacion.ARRIBA,250,0,TipoMonstruo.B
 CartaMagica,"Escudo del Guerrero","Aumenta la defensa de los guerreros",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,200,TipoMonstruo.G
 CartaMagica,"Destello Luminiscente","Aumenta la defensa de monstruos de luz",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,300,TipoMonstruo.L
-CartaTrampa,"Tornado de Polvo","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.VIENTO
-CartaTrampa,"Barrera de Fuego","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.FUEGO
-CartaTrampa,"Escudo del Agua","Detiene el ataque de monstruos con atributo AGUA",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.AGUA
-CartaTrampa,"Escudo de Tierra","Detiene el ataque de monstruos con atributo TIERRA",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.TIERRA
-CartaTrampa,"Oscuridad Eterna","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.OSCURIDAD
-CartaTrampa,"Luz Radiante","Detiene el ataque de monstruos con atributo LUZ",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.LUZ
-CartaTrampa,"Ataque de Viento","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.VIENTO
-CartaTrampa,"Barrera Sagrada","Detiene el ataque de monstruos con atributo TIERRA",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.TIERRA
-CartaTrampa,"Llamas Infinitas","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.FUEGO
-CartaTrampa,"Reflejo Oscuro","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.OSCURIDAD
-CartaTrampa,"Barrera de Hielo","Detiene el ataque de monstruos con atributo AGUA",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.AGUA
-CartaTrampa,"Manto de Fuego","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.FUEGO
-CartaTrampa,"Sombra Oscura","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.OSCURIDAD
-CartaTrampa,"Viento Cortante","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.VIENTO
-CartaTrampa,"Reflejo de Luz","Detiene el ataque de monstruos con atributo LUZ",Posicion.HORIZONTAL,Orientacion.ARRIBA,TipoAtributo.LUZ
+CartaTrampa,"Tornado de Polvo","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.VIENTO
+CartaTrampa,"Barrera de Fuego","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.FUEGO
+CartaTrampa,"Escudo del Agua","Detiene el ataque de monstruos con atributo AGUA",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.AGUA
+CartaTrampa,"Escudo de Tierra","Detiene el ataque de monstruos con atributo TIERRA",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.TIERRA
+CartaTrampa,"Oscuridad Eterna","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.OSCURIDAD
+CartaTrampa,"Luz Radiante","Detiene el ataque de monstruos con atributo LUZ",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.LUZ
+CartaTrampa,"Ataque de Viento","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.VIENTO
+CartaTrampa,"Barrera Sagrada","Detiene el ataque de monstruos con atributo TIERRA",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.TIERRA
+CartaTrampa,"Llamas Infinitas","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.FUEGO
+CartaTrampa,"Reflejo Oscuro","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.OSCURIDAD
+CartaTrampa,"Barrera de Hielo","Detiene el ataque de monstruos con atributo AGUA",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.AGUA
+CartaTrampa,"Manto de Fuego","Detiene el ataque de monstruos con atributo FUEGO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.FUEGO
+CartaTrampa,"Sombra Oscura","Detiene el ataque de monstruos con atributo OSCURIDAD",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.OSCURIDAD
+CartaTrampa,"Viento Cortante","Detiene el ataque de monstruos con atributo VIENTO",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.VIENTO
+CartaTrampa,"Reflejo de Luz","Detiene el ataque de monstruos con atributo LUZ",Posicion.HORIZONTAL,Orientacion.ABAJO,TipoAtributo.LUZ

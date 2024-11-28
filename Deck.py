@@ -5,6 +5,7 @@ from TipoAtributo import *
 from TipoMonstruo import *
 import random as rd
 
+#CREA EL DECK
 class Deck:
   @staticmethod
   def crearDeck():

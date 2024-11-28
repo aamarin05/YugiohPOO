@@ -9,6 +9,7 @@ class Jugador:
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
 
+#GETTERS Y SETTER
   def getNombre(self):
     return self.__nombre
   def getPuntos (self):
@@ -20,6 +21,7 @@ class Jugador:
   def getTablero(self):
     return  self.__tablero  
 
+#FUNCIONES JUGABLES DE TODOS LOS JUGADORES
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
@@ -37,7 +39,7 @@ class Jugador:
   def seleccionarCartaMano(self,indice):
     return self.__mano[indice]
   
-  def agregarCartaTablero(self,indice):
+  def agregarCartaTablero(self,indice): 
     carta = self.getMano()[indice]
     if isinstance(carta,CartaMonstruo):
       if len(self.__tablero.getMonstruos()) < 3:
@@ -53,18 +55,18 @@ class Jugador:
           carta.modoDefensa()
           self.__tablero.getMonstruos().append(carta)
           self.__mano.remove(carta)
-        print(f"Se ha agregado la carta monstruo {carta} al tablero")
+        print(f"Se ha agregado la carta monstruo al tablero \n{carta}")
       else:
         print("Espacio para carta tipo Monstruo lleno en el tablero")
     else:
       if len(self.__tablero.getEspeciales()) < 3:
         self.__tablero.getEspeciales().append(carta)
         self.__mano.remove(carta)
-        print(f"Se ha agregado la carta especial {carta} al tablero")
+        print(f"Se ha agregado la carta especial al tablero \n{carta}")
       else:
         print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
 
-
+#TOSTRING
   def __str__ (self):
     monstruos = []
     especiales = []

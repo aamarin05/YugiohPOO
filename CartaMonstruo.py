@@ -25,25 +25,31 @@ class CartaMonstruo(Carta):
     def setDefensa (self, defensa):
         self.__defensa = defensa
 
+#FUNCIONES JUGABLES CARTAS MONSTRUO LLAMAN
     def cambiarPosicion(self,posicion):
         if self.getOrientacion() == Orientacion.ARRIBA:
             self.setPosicion(posicion)
+
     def modoAtaque(self):
         self.setOrientacion(Orientacion.ARRIBA)
         self.setPosicion(Posicion.VERTICAL)
+
     def modoDefensa(self):
         self.setOrientacion(Orientacion.ABAJO)
+
     def eModoAtaque(self):
         if self.getPosicion()== Posicion.VERTICAL:
             return True
         else:
             return False
+        
     def eModoDefensa(self):
         if (self.getPosicion()== Posicion.HORIZONTAL) or (self.getOrientacion() == Orientacion.ABAJO):
             return True
         else:
             return False
 
+#TO STRING
     def __str__(self):
         if self.eModoAtaque():
             modo = "ATAQUE"
