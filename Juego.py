@@ -166,7 +166,7 @@ class Juego():
       if self.__turnos == 1:
         print(f"{self.__jugador.manoImprimir()}\n")
         print("Crea tu tablero\n")
-      pregunta = ""
+      pregunta = "  "
       while pregunta != "" :
         pregunta = input("Ingrese el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION Enter.- CONTINUAR A LA SIGUIENTE FASE \n ")
         if pregunta == "1":
