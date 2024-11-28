@@ -38,13 +38,13 @@ class CartaMonstruo(Carta):
         self.setOrientacion(Orientacion.ABAJO)
 
     def eModoAtaque(self):
-        if self.getPosicion()== Posicion.VERTICAL:
+        if self.getPosicion() == Posicion.VERTICAL:
             return True
         else:
             return False
         
     def eModoDefensa(self):
-        if (self.getPosicion()== Posicion.HORIZONTAL) or (self.getOrientacion() == Orientacion.ABAJO):
+        if (self.getPosicion() == Posicion.HORIZONTAL) or (self.getOrientacion() == Orientacion.ABAJO):
             return True
         else:
             return False
@@ -56,6 +56,6 @@ class CartaMonstruo(Carta):
         elif self.eModoDefensa():
             modo = "DEFENSA"
         if self.getOrientacion()==Orientacion.ARRIBA:
-            return f"Carta Monstruo Modo:{modo} {super().__str__()} ATQ:{self.__ataque} DEF:{self.__defensa} TIPO{self.__tipo} ATRIBUTO: TIPO{self.__atributo} "
+            return f"Carta Monstruo Modo:{modo} {super().__str__()} ATQ:{self.__ataque} DEF:{self.__defensa} TIPO: {self.__tipo} ATRIBUTO: {self.__atributo} "
         else:
             return "Carta boca abajo"
