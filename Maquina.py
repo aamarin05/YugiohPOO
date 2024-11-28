@@ -2,23 +2,23 @@ from Jugador import *
 from Tablero import *
 class Maquina:
   def __init__(self):
-    self.__nombre = "Maquina"
+    self.getNombre() = "Maquina"
     self.__deck = Deck.crearDeck()
-    self.__puntos = 4000
-    self.__tablero = Tablero()
+    self.getPuntos() = 4000
+    self.getTablero() = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
 
 #SETTERS Y GETTERS
   def getNombre(self):
-    return self.__nombre
+    return self.getNombre()
   def getPuntos (self):
-    return self.__puntos
+    return self.getPuntos()
   def setPuntos (self, puntos):
-    self.__puntos = puntos
+    self.getPuntos() = puntos
   def getMano (self):
     return self.__mano 
   def getTablero(self):
-    return  self.__tablero 
+    return  self.getTablero() 
 
 #FUNCIONES DE LA MAQUINA PARA AGREGAR Y ORDENAR
   def ordenarMano(self): #ORDENA LA MANO SEPARANDO LAS CARTAS EN SUS TIPOS
@@ -39,7 +39,7 @@ class Maquina:
     return cartasOrdenadas[:3]
   
   def agregarMonstruoTablero(self,monstruo,modo):
-    if len(self.__tablero.getMonstruos()) < 3: #SI LOS ESPACIOS DE MONSTRUO NO ESTÁN LLENOS
+    if len(self.getTablero().getMonstruos()) < 3: #SI LOS ESPACIOS DE MONSTRUO NO ESTÁN LLENOS
       if modo == "ataque":
         monstruo.modoAtaque()
       if modo == "defensa":
@@ -67,8 +67,8 @@ class Maquina:
       
 #COMO USA LA MAQUINA LAS CARTAS ESPECIALES
   def usarEspeciales(self):
-    especiales = self.__tablero.getEspeciales()
-    monstruos = self.__tablero.getMonstruos()
+    especiales = self.getTablero().getEspeciales()
+    monstruos = self.getTablero().getMonstruos()
     cartasUsadas =[] #PARA NO INTENTAR USAR LA MISMA CARTA CON OTRO MONSTRUO
     for carta in especiales:
       if carta not in cartasUsadas:#SI SE USA LA CARTA YA NO SE VUELVE A USAR
@@ -81,7 +81,7 @@ class Maquina:
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
-    print(f"Maquina la carta {carta.getNombre()}")
+    print(f"Maquina toma la carta {carta.getNombre()}")
 
   def manoImprimir(self):
     mostrar= ""
@@ -96,32 +96,32 @@ class Maquina:
   def agregarCartaTablero(self,indice):
     carta = self.getMano()[indice]
     if isinstance(carta,CartaMonstruo):
-      if len(self.__tablero.getMonstruos()) < 3:
+      if len(self.getTablero().getMonstruos()) < 3:
         pos = input("1.Modo Ataque, 2. Modo Defensa:")
         while (pos != "1") and (pos !="2"):
           print("Ingrese (1 o 2)")
           pos = input("1.Modo Ataque, 2. Modo Defensa:")
         if pos == "1":
           carta.modoAtaque()
-          self.__tablero.getMonstruos().append(carta)
+          self.getTablero().getMonstruos().append(carta)
           self.__mano.remove(carta)
         elif pos == "2":
           carta.modoDefensa()
-          self.__tablero.getMonstruos().append(carta)
+          self.getTablero().getMonstruos().append(carta)
           self.__mano.remove(carta)
         print(f"Se ha agregado la carta monstruo {carta} al tablero")
       else:
         print("Espacio para carta tipo Monstruo lleno en el tablero")
     else:
-      if len(self.__tablero.getEspeciales()) < 3:
-        self.__tablero.getEspeciales().append(carta)
+      if len(self.getTablero().getEspeciales()) < 3:
+        self.getTablero().getEspeciales().append(carta)
         self.__mano.remove(carta)
         print(f"Se ha agregado la carta especial {carta} al tablero")
       else:
         print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
 
   def seleccionarCartaTablero(self,indice):
-    return self.__tablero[indice]
+    return self.getTablero()[indice]
 
 #TO STRING MAQUINA
   def __str__ (self):
@@ -129,15 +129,15 @@ class Maquina:
     especiales = []
 
     for i in range(3):
-        if i < len(self.__tablero.getMonstruos()):
-            monstruos.append(str(self.__tablero.getMonstruos()[i]))
+        if i < len(self.getTablero().getMonstruos()):
+            monstruos.append(str(self.getTablero().getMonstruos()[i]))
         else:
             monstruos.append("No hay cartas")
 
     for i in range(3):
-        if i < len(self.__tablero.getEspeciales()):
-            especiales.append(str(self.__tablero.getEspeciales()[i]))
+        if i < len(self.getTablero().getEspeciales()):
+            especiales.append(str(self.getTablero().getEspeciales()[i]))
         else:
             especiales.append("No hay cartas")
-    return(f"{self.__nombre} - Lp:{self.__puntos}\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\nMonstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]")  
+    return(f"{self.getNombre()} - Lp:{self.getPuntos()}\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\nMonstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]")  
 
