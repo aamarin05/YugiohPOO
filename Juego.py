@@ -35,19 +35,27 @@ class Juego():
             diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
             puntos = oponente.getPuntos() - abs (diferencia)
             oponente.setPuntos(puntos)
+            cartaOponente.destruida()
+            oponente.getTablero().removerCarta(cartaOponente)#le aniadi esta parte de remover la carta
         elif (cartaAtacante.getAtaque() == cartaOponente.getAtaque()):
           oponente.getTablero().removerCarta(cartaOponente)
           atacante.getTablero().removerCarta(cartaAtacante)
+          print("Sus ataques fueron iguales")
+          cartaOponente.destruida()
+          cartaAtacante.destruida()# Muestra que se destruyeron las dos cartas
+          
+
     elif (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()):
         if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
             oponente.getTablero().removerCarta(cartaOponente)
+            cartaOponente.destruida()
         elif  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
             diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
             puntos = atacante.getPuntos() - abs (diferencia)
             atacante.setPuntos(puntos) 
             cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
-    print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero().__str__()}")
-    print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero().__str__()}")
+    print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()._str_()}")
+    print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()._str_()}")
 
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos()
@@ -94,7 +102,9 @@ class Juego():
     else:
       print("En ese lugar no hay esa carta")
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
+    print("-----------------------------------------------")
     print(jugador.getTablero()._str_())
+    print("-----------------------------------------------")
 
     indiceMa = input("Ingrese el indice de la carta Mágica o Trampa a usar: ")
     if indiceMa.isdigit() == False or int(indiceMa) > len(jugador.getTablero().getEspeciales()) or int(indiceMa)<=0:
@@ -115,15 +125,16 @@ class Juego():
           cartaMa.usar(cartaMo)
           self.__jugador.getTablero().removerCarta(cartaMo)
   def opcion3 (self,jugador,oponente,cartasUsadas):
-    print(jugador)
     print(oponente)
-    indiceJugador = input("Ingrese indice de su carta montruo que declara batalla: ")
+    print(jugador)
+    indiceJugador = input("Ingrese indice de su carta monstruo que declara batalla: ")
     if (not indiceJugador.isdigit()) or int(indiceJugador) > len(jugador.getTablero().getMonstruos()) or int(indiceJugador)<=0:
       print("En ese lugar no hay carta")
     else:
       indiceJugador = int(indiceJugador)-1
       cartaJugador = jugador.getTablero().getMonstruos()[indiceJugador]
       if cartaJugador not in cartasUsadas:
+        usada= False
         for cartaEspecial in self.__maquina.getTablero().getEspeciales():
           if isinstance(cartaEspecial,CartaTrampa):
             usada = cartaEspecial.usar(cartaJugador)
@@ -133,7 +144,7 @@ class Juego():
             print(f"{cartaJugador} tuvo una batalla directa contra {self.__maquina}")
           else:
             indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
-            if int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or indiceOponente<=0:
+            if int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or int(indiceOponente)<=0:
               print("En ese lugar no hay carta")
             else:
               indiceOponente = int(indiceOponente)-1

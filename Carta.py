@@ -19,11 +19,13 @@ class Carta:
     return self.__posicion
   def setPosicion (self, posicion):
     self.__posicion = posicion
+  def destruida(self): #Sale un mensaje que dice que la carta se destruyo
+    print(f"{self.__nombre} fue destruida")
 
 #TO STRING
   def __str__(self):
     if self.__orientacion == Orientacion.ARRIBA:
-      return f"{self.__nombre}\n{self.__descripcion}"
+      return f"{self.__nombre}-{self.__descripcion}"
     else:
       return "Carta boca abajo"
   def __eq__(self, carta):
