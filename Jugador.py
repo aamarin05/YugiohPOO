@@ -27,14 +27,14 @@ class Jugador:
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
-    print(f"\nJugador toma la carta {carta.getNombre()}")
+    print(f"Jugador toma la carta {carta.getNombre()}")
   
   def manoImprimir(self):
     mostrar= ""
     for i in range(len(self.__mano)):  
         carta = self.__mano[i]         
         mostrar += f"{i + 1}. {carta}\n"
-    return f"\nUsted tiene en su mano:\n{mostrar}"
+    return f"Usted tiene en su mano:\n{mostrar}"
 
   def seleccionarCartaTablero(self,indice):
     return self.__tablero[indice]
@@ -57,7 +57,7 @@ class Jugador:
           carta.modoDefensa()
           self.__tablero.getMonstruos().append(carta)
           self.__mano.remove(carta)
-        print(f"Se ha agregado la carta monstruo al tablero \n{carta}")
+        print(f"Se ha agregado la carta monstruo al tablero \n{carta}\n")
       else:
         print("Espacio para carta tipo Monstruo lleno en el tablero")
     else:
