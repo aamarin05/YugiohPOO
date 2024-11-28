@@ -58,7 +58,6 @@ CartaMagica,"Espada Ardiente","Aumenta el ataque de los monstruos fuego",Posicio
 CartaMagica,"Luz Radiante","Aumenta el ataque de los monstruos de luz",Posicion.HORIZONTAL,Orientacion.ARRIBA,300,0,TipoMonstruo.L
 CartaMagica,"Escudo del Guerrero","Aumenta la defensa de los guerreros",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,200,TipoMonstruo.G
 CartaMagica,"Fuerza Viento","Aumenta el ataque de los monstruos viento",Posicion.HORIZONTAL,Orientacion.ARRIBA,250,0,TipoMonstruo.B
-CartaMagica,"Magia Curativa","Recupera 1000 puntos de vida",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,0,TipoMonstruo.L
 CartaMagica,"Potencia Oscura","Incrementa el ataque de monstruos oscuros",Posicion.HORIZONTAL,Orientacion.ARRIBA,300,0,TipoMonstruo.D
 CartaMagica,"Tornado Mágico","Destruye una carta mágica o trampa",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,0,TipoMonstruo.O
 CartaMagica,"Fuerza Espiritual","Aumenta la defensa de los monstruos de luz",Posicion.HORIZONTAL,Orientacion.ARRIBA,0,300,TipoMonstruo.L
