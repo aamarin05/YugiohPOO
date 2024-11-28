@@ -35,8 +35,8 @@ class Juego():
             cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
         else:
           print(f"\nCarta {cartaAtacante} no pudo atacar {cartaOponente}")
-    print(f"\nTablero de {atacante.getNombre()}: {atacante.getTablero()}")
-    print(f"\nTablero de {oponente.getNombre()}: {oponente.getTablero()}")
+    print(f"\nTablero de {atacante.getNombre()}: {atacante.getTablero().__str__()}")
+    print(f"\nTablero de {oponente.getNombre()}: {oponente.getTablero().__str__()}")
 
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos()
