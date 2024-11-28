@@ -20,6 +20,8 @@ class Juego():
             diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
             puntos = oponente.getPuntos() - abs (diferencia)
             oponente.setPuntos(puntos)
+            cartaOponente.destruida()
+            oponente.getTablero().removerCarta(cartaOponente)#le aniadi esta parte de remover la carta
         elif (cartaAtacante.getAtaque() == cartaOponente.getAtaque()): #ATAQUE IGUAL
           oponente.getTablero().removerCarta(cartaOponente)
           atacante.getTablero().removerCarta(cartaAtacante)
@@ -28,6 +30,9 @@ class Juego():
     elif (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()): #AMBAS CARTAS MODOS DISTINTOS
         if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
             oponente.getTablero().removerCarta(cartaOponente)
+            print("Sus ataques fueron iguales")
+            cartaOponente.destruida()
+            cartaAtacante.destruida()# Muestra que se destruyeron las dos cartas
         elif  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
             diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
             puntos = atacante.getPuntos() - abs (diferencia)
@@ -114,6 +119,7 @@ class Juego():
       indiceJugador = int(indiceJugador)-1
       cartaJugador = jugador.getTablero().getMonstruos()[indiceJugador]
       if cartaJugador not in cartasUsadas:
+        usada= True
         for cartaEspecial in self.__maquina.getTablero().getEspeciales():
           if isinstance(cartaEspecial,CartaTrampa):
             usada = cartaEspecial.usar(cartaJugador)
@@ -123,7 +129,7 @@ class Juego():
             print(f"{cartaJugador} tuvo una batalla directa contra {self.__maquina}")
           else:
             indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
-            if int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or indiceOponente<=0:
+            if int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or int(indiceOponente)<=0:
               print("En ese lugar no hay carta")
             else:
               indiceOponente = int(indiceOponente)-1

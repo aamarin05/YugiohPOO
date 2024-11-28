@@ -122,5 +122,12 @@ class Maquina(Jugador):
             especiales.append(str(self.getTablero().getEspeciales()[i]))
         else:
             especiales.append("No hay cartas")
-    return(f"{self.getNombre()} - Lp:{self.getPuntos()}\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\nMonstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]")  
-
+    maquina= (
+      f"----------------------------------------------------------------------\n"
+      f"{self.getNombre()} - Lp:{self.getPuntos()}\n"
+      f"----------------------------------------------------------------------\n"
+      f"Especiales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\n"
+      f"----------------------------------------------------------------------\n"
+      f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\n"
+      f"----------------------------------------------------------------------\n")  
+    return maquina
