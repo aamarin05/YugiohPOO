@@ -60,7 +60,6 @@ class Maquina(Jugador):
               carta.usar(monstruo)
               cartasUsadas.append(carta)
 
-#FUNCION DE JUGADOR
   def tomarCarta(self):
     carta= self.getDeck().pop()
     self.getMano().append(carta)

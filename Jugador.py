@@ -19,9 +19,9 @@ class Jugador:
   def getMano (self):
     return self.__mano 
   def getTablero(self):
-    return  self.__tablero 
+    return  self.__tablero  
   def getDeck(self):
-    return self.__deck 
+    return self.__deck
 
 #FUNCIONES JUGABLES DE TODOS LOS JUGADORES
   def tomarCarta(self):
