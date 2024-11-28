@@ -20,14 +20,20 @@ class Juego():
             diferencia = cartaOponente.getAtaque() - cartaAtacante.getAtaque()
             puntos = oponente.getPuntos() - abs (diferencia)
             oponente.setPuntos(puntos)
+            cartaOponente.destruida()
+            oponente.getTablero().removerCarta(cartaOponente)#le aniadi esta parte de remover la carta
         elif (cartaAtacante.getAtaque() == cartaOponente.getAtaque()): #ATAQUE IGUAL
           oponente.getTablero().removerCarta(cartaOponente)
           atacante.getTablero().removerCarta(cartaAtacante)
+          cartaOponente.destruida()
+          cartaAtacante.destruida()
+          print("Sus cartas fueron iguales")
         else:
           print(f"\nCarta {cartaAtacante} no pudo atacar {cartaOponente}")
     elif (cartaAtacante.eModoAtaque() and cartaOponente.eModoDefensa()): #AMBAS CARTAS MODOS DISTINTOS
         if (cartaAtacante.getAtaque > cartaOponente.getDefensa()):
             oponente.getTablero().removerCarta(cartaOponente)
+            cartaOponente.destruida()
         elif  (cartaAtacante.getAtaque < cartaOponente.getDefensa()):
             diferencia = cartaAtacante.getAtaque() - cartaOponente.getDefensa()
             puntos = atacante.getPuntos() - abs (diferencia)

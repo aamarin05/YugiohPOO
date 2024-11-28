@@ -84,5 +84,12 @@ class Jugador:
             especiales.append(str(self.__tablero.getEspeciales()[i]))
         else:
             especiales.append("No hay cartas")
-    return(f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\nEspeciales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}] \n{self.__nombre} - Lp:{self.__puntos}")
-
+    personaje= (
+      f"----------------------------------------------------------------------\n"
+      f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\n"
+      f"----------------------------------------------------------------------\n"
+      f"Especiales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]\n"
+      f"----------------------------------------------------------------------\n"
+      f"{self.__nombre} - Lp:{self.__puntos}\n"
+      f"----------------------------------------------------------------------\n")
+    return personaje
