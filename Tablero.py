@@ -28,9 +28,9 @@ class Tablero:
 
 
     tablero = (
-        f"Tablero\n"
-        f"Monstruo: \n[{monstruos[0]}] \n[{monstruos[1]}] \n[{monstruos[2]}]\n"
-        f"Especiales: \n[{especiales[0]}] \n[{especiales[1]}] \n[{especiales[2]}]"
+        f"Tablero"
+        f"\nMonstruo: \n[{monstruos[0]}] \n[{monstruos[1]}] \n[{monstruos[2]}]\n"
+        f"\nEspeciales: \n[{especiales[0]}] \n[{especiales[1]}] \n[{especiales[2]}]"
     )
     return tablero
 

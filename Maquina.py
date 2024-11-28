@@ -61,8 +61,8 @@ class Maquina(Jugador):
               cartasUsadas.append(carta)
 
   def tomarCarta(self):
-    carta=self.__deck.pop()
-    self.__mano.append(carta)
+    carta= self.getDeck().pop()
+    self.getMano().append(carta)
     print(f"Maquina toma la carta {carta.getNombre()}")
 
   def manoImprimir(self):
@@ -98,7 +98,6 @@ class Maquina(Jugador):
       if len(self.getTablero().getEspeciales()) < 3:
         self.getTablero().getEspeciales().append(carta)
         self.getMano().remove(carta)
-
         print(f"Se ha agregado la carta especial {carta} al tablero")
       else:
         print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")
