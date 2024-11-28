@@ -35,8 +35,8 @@ class Juego():
             cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
         else:
           print(f"\nCarta {cartaAtacante} no pudo atacar {cartaOponente}")
-    print(f"\nTablero de {atacante.getNombre()}: {atacante.getTablero().__str.__()}")
-    print(f"\nTablero de {oponente.getNombre()}: {oponente.getTablero().__str.__()}")
+    print(f"\nTablero de {atacante.getNombre()}: {atacante.getTablero().__str__()}")
+    print(f"\nTablero de {oponente.getNombre()}: {oponente.getTablero().__str__()}")
 
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos()
@@ -90,6 +90,8 @@ class Juego():
     if (indice.isdigit()) and (int(indice) <= len(jugador.getMano())) and (int(indice)>0): #Ejecuta si hay carta en el tablero
       indice = int(indice)-1
       jugador.agregarCartaTablero(indice)
+      print(jugador.getTablero().__str__())
+
     else:
       print("En ese lugar no hay esa carta")
 
@@ -139,7 +141,7 @@ class Juego():
             print(f"{cartaJugador} tuvo una batalla directa contra {oponente}")
           else:
             indiceOponente = input("Ingrese indice de la carta monstruo a atacar: ")
-            if ((not indiceOponente.isdigit()) or int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or indiceOponente<=0):
+            if ((not indiceOponente.isdigit()) or int(indiceOponente) > len(oponente.getTablero().getMonstruos()) or int(indiceOponente)<=0):
               print("En ese lugar no hay carta")
             else:
               indiceOponente = int(indiceOponente)-1

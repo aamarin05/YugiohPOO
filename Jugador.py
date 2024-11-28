@@ -57,8 +57,7 @@ class Jugador:
           carta.modoDefensa()
           self.__tablero.getMonstruos().append(carta)
           self.__mano.remove(carta)
-        print(f"Se ha agregado la carta monstruo al tablero \n{carta}")
-        print (self.__tablero.__str__())
+        print(f"Se ha agregado la carta monstruo al tablero \n{carta}\n")
       else:
         print("Espacio para carta tipo Monstruo lleno en el tablero")
     else:
