@@ -58,8 +58,9 @@ class Juego():
             for cartaEspecial in self.__jugador.getTablero().getEspeciales(): #VA A BUSCAR SI TIENE TRAMAPA
               if isinstance(cartaEspecial,CartaTrampa): #QUE TENGA CARTAS TRAMPA SI TIENE SE USA
                 usada = cartaEspecial.usar(cartaM) #SE GUARDA LA VARIABLE
-            if usada: #SI SE UO UNA TRAMPA
-              trampas.append(cartaEspecial) #SE GUARDA EN TRAMPAS
+                if usada: #SI SE UO UNA TRAMPA
+                  trampas.append(cartaEspecial) #SE GUARDA EN TRAMPAS
+                  self.__jugador.getTablero().removerCarta(cartaEspecial)
             if trampas == []: #SI ESTA VACIA ES PORQUE NO SE USO TRAMPAS, ASÍ QUE SÍ VA A RECIBIR EL ATAQUE
               if monstruosJugador == []:
                 Juego.batallaDirecta(cartaM,self.__jugador)
@@ -129,8 +130,9 @@ class Juego():
         for cartaEspecial in oponente.getTablero().getEspeciales(): #SE BUSCA EN LAS ESPECIALES DE LA MAQUINA
           if isinstance(cartaEspecial,CartaTrampa): #QUE TENGA CARTAS TRAMPA SI TIENE SE USA
             usada = cartaEspecial.usar(cartaJugador) #SE GUARDA LA VARIABLE
-          if usada: #SI SE UO UNA TRAMPA
-            trampas.append(cartaEspecial) #SE GUARDA EN TRAMPAS
+            if usada: #SI SE UO UNA TRAMPA
+              trampas.append(cartaEspecial) #SE GUARDA EN TRAMPAS
+              oponente.getTablero().removerCarta(cartaEspecial)
         if trampas == []: #SI ESTA VACIA ES PORQUE NO SE USO TRAMPAS, ASÍ QUE SÍ VA A RECIBIR EL ATAQUE
           if(oponente.getTablero().getMonstruos() == []):
             self.batallaDirecta(cartaJugador,oponente)
