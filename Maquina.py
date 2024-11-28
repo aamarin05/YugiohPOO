@@ -1,24 +1,7 @@
 from Jugador import *
-from Tablero import *
-class Maquina:
+class Maquina(Jugador):
   def __init__(self):
-    self.getNombre() = "Maquina"
-    self.__deck = Deck.crearDeck()
-    self.getPuntos() = 4000
-    self.getTablero() = Tablero()
-    self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
-
-#SETTERS Y GETTERS
-  def getNombre(self):
-    return self.getNombre()
-  def getPuntos (self):
-    return self.getPuntos()
-  def setPuntos (self, puntos):
-    self.getPuntos() = puntos
-  def getMano (self):
-    return self.__mano 
-  def getTablero(self):
-    return  self.getTablero() 
+    super().__init__("Maquina")
 
 #FUNCIONES DE LA MAQUINA PARA AGREGAR Y ORDENAR
   def ordenarMano(self): #ORDENA LA MANO SEPARANDO LAS CARTAS EN SUS TIPOS
@@ -79,19 +62,19 @@ class Maquina:
 
 #FUNCION DE JUGADOR
   def tomarCarta(self):
-    carta=self.__deck.pop()
-    self.__mano.append(carta)
+    carta= self.getDeck().pop()
+    self.getMano().append(carta)
     print(f"Maquina toma la carta {carta.getNombre()}")
 
   def manoImprimir(self):
     mostrar= ""
-    for i in range(len(self.__mano)):  
-        carta = self.__mano[i]         
+    for i in range(len(self.getMano())):  
+        carta = self.getMano()[i]         
         mostrar += f"{i + 1}. {carta.__str__()}\n"
     return f"Usted tiene en su mano:\n{mostrar}"
 
   def seleccionarCartaMano(self,indice):
-    return self.__mano[indice]
+    return self.getMano()[indice]
   
   def agregarCartaTablero(self,indice):
     carta = self.getMano()[indice]
@@ -104,18 +87,18 @@ class Maquina:
         if pos == "1":
           carta.modoAtaque()
           self.getTablero().getMonstruos().append(carta)
-          self.__mano.remove(carta)
+          self.getMano().remove(carta)
         elif pos == "2":
           carta.modoDefensa()
           self.getTablero().getMonstruos().append(carta)
-          self.__mano.remove(carta)
+          self.getMano().remove(carta)
         print(f"Se ha agregado la carta monstruo {carta} al tablero")
       else:
         print("Espacio para carta tipo Monstruo lleno en el tablero")
     else:
       if len(self.getTablero().getEspeciales()) < 3:
         self.getTablero().getEspeciales().append(carta)
-        self.__mano.remove(carta)
+        self.getMano().remove(carta)
         print(f"Se ha agregado la carta especial {carta} al tablero")
       else:
         print("Espacio para cartas tipo Magica o Trampa lleno en el tablero")

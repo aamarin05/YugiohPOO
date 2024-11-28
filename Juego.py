@@ -48,7 +48,7 @@ class Juego():
     monstruosMaquina = self.__maquina.getTablero().getMonstruos()
     monstruosAtaqueJ = []
     for monstruo in monstruosJugador: #REVISA LA LISTA DEL JUGADOR
-      if monstruo.emodoAtaque():
+      if monstruo.eModoAtaque():
         monstruosAtaqueJ.append(monstruo) #REGISTRA LAS CARTAS QUE EL JUGADOR TIENE EN ATAQUE
     usadas = []
     trampas = []
