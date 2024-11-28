@@ -110,8 +110,10 @@ class Juego():
       cartaMo = jugador.getTablero().getMonstruos()[indiceMo]
       if (isinstance(cartaMa, CartaMagica)):
           cartaMa.usar(cartaMo)
+          self.__jugador.getTablero().removerCarta(cartaMa)
       if (isinstance(cartaMa, CartaTrampa)):
           cartaMa.usar(cartaMo)
+          self.__jugador.getTablero().removerCarta(cartaMo)
   def opcion3 (self,jugador,oponente,cartasUsadas):
     print(jugador)
     print(oponente)
@@ -148,8 +150,8 @@ class Juego():
       print (f"\nTurno {self.__turnos}")
 
       print("\nFASE TOMAR CARTA\n")
-      print(f"Jugador {self.__jugador.tomarCarta()}")
-      print(f"Maquina {self.__maquina.tomarCarta()}")
+      self.__jugador.tomarCarta()
+      self.__maquina.tomarCarta()
 
       print("\nFASE PRINCIPAL\n")
       #JUGADOR
@@ -208,8 +210,8 @@ class Juego():
       cartasUsadas = [] 
       self.__turnos +=1
       print("\nRESULTADOS\n")
-      print(self.__maquina.__str__())
-      print(self.__jugador.__str__())
+      print(self.__maquina)
+      print(self.__jugador)
       if self.__jugador.getPuntos() <= 0:
         print("\nMAQUINA GANA!!")
       if self.__maquina.getPuntos() <= 0:

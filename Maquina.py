@@ -82,7 +82,7 @@ class Maquina:
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
-    print(f"Tomaste la carta {carta.getNombre()}")
+    print(f"Maquina la carta {carta.getNombre()}")
 
   def manoImprimir(self):
     mostrar= ""
