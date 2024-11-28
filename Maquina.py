@@ -124,7 +124,7 @@ class Maquina:
   def seleccionarCartaTablero(self,indice):
     return self.__tablero[indice]
 
-#TO STRING
+#TO STRING 
   def __str__ (self):
     monstruos = []
     especiales = []
