@@ -6,7 +6,8 @@ class Maquina:
     self.__puntos = 4000
     self.__tablero = Tablero()
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
-  
+
+#SETTERS Y GETTERS
   def getNombre(self):
     return self.__nombre
   def getPuntos (self):
@@ -53,6 +54,8 @@ class Maquina:
         self.agregarMonstruoTablero(monstruo,"ataque")
     for cartaM in magicas:
       self.agregarEspecialesTablero(cartaM)
+    for cartaT in trampas:
+      self.agregarEspecialesTablero(cartaT)
 
   def agregarEspecialesTablero(self,especial):
     if len(self.__tablero.getEspeciales()) < 3:
@@ -75,6 +78,7 @@ class Maquina:
               carta.usar(monstruo)
               cartasUsadas.append(carta)
 
+#FUNCION DE JUGADOR
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
@@ -119,7 +123,8 @@ class Maquina:
 
   def seleccionarCartaTablero(self,indice):
     return self.__tablero[indice]
-  
+
+#TO STRING 
   def __str__ (self):
     monstruos = []
     especiales = []

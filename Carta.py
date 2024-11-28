@@ -6,7 +6,7 @@ class Carta:
     self.__posicion = posicion
     self.__orientacion = orientacion
 
-  #getters y setters
+#getters y setters
   def getNombre (self):
     return self.__nombre
   def getDescripcion (self):
@@ -19,6 +19,8 @@ class Carta:
     return self.__posicion
   def setPosicion (self, posicion):
     self.__posicion = posicion
+
+#TO STRING
   def __str__(self):
     if self.__orientacion == Orientacion.ARRIBA:
       return f"{self.__nombre}\n{self.__descripcion}"
