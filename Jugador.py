@@ -25,14 +25,14 @@ class Jugador:
   def tomarCarta(self):
     carta=self.__deck.pop()
     self.__mano.append(carta)
-    print(f"Jugador la carta {carta.getNombre()}")
+    print(f"\nJugador la carta {carta.getNombre()}")
   
   def manoImprimir(self):
     mostrar= ""
     for i in range(len(self.__mano)):  
         carta = self.__mano[i]         
         mostrar += f"{i + 1}. {carta}\n"
-    return f"Usted tiene en su mano:\n{mostrar}"
+    return f"\nUsted tiene en su mano:\n{mostrar}"
 
   def seleccionarCartaTablero(self,indice):
     return self.__tablero[indice]
