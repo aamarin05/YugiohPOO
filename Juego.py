@@ -46,8 +46,8 @@ class Juego():
             puntos = atacante.getPuntos() - abs (diferencia)
             atacante.setPuntos(puntos) 
             cartaOponente.modoAtaque().setPosicion(Posicion.HORIZONTAL)
-    print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero()}")
-    print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero()}")
+    print(f"Tablero de {atacante.getNombre()}: {atacante.getTablero().__str__()}")
+    print(f"Tablero de {oponente.getNombre()}: {oponente.getTablero().__str__()}")
 
   def batallaDirecta(cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos()
