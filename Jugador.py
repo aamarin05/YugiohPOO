@@ -6,7 +6,7 @@ class Jugador:
     self.__nombre = nombre
     self.__deck = Deck.crearDeck()
     self.__puntos = 4000
-    self.__tablero = Tablero()
+    self.__tablero = Tablero() 
     self.__mano= [self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop(),self.__deck.pop()]
 
 #GETTERS Y SETTER

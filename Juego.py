@@ -85,7 +85,7 @@ class Juego():
 
 #OPCIONES DEL JUGADOR
   def opcion1 (self,jugador): #Carta es la que se quiere agregar al tablero
-    print(jugador.getTablero()._str_())
+    print(jugador.getTablero().__str__())
     print(jugador.manoImprimir())
     indice = input("Ingrese el indice de la carta: ")
     if (indice.isdigit()) and (int(indice) <= len(jugador.getMano())) and (int(indice)>0): #Ejecuta si hay carta en el tablero
@@ -94,15 +94,15 @@ class Juego():
     else:
       print("En ese lugar no hay esa carta")
   def opcion2 (self,jugador): #carta es la carta magica o trampa, carta monstruo la que se quiere mejorar
-    print(jugador.getTablero()._str_())
+    print(jugador.getTablero().__str__())
 
     indiceMa = input("Ingrese el indice de la carta Mágica o Trampa a usar: ")
-    if indiceMa.isdigit() == False or int(indiceMa) > len(jugador.getTablero().getEspeciales()) or int(indiceMa)<=0:
+    if (not indiceMa.isdigit()) or int(indiceMa) > len(jugador.getTablero().getEspeciales()) or int(indiceMa)<=0:
       print("No hay carta especial en ese indice")
     else:
       indiceMa = int(indiceMa)-1
       indiceMo = input("Ingrese el indice de la carta Monstruo a mejorar: ")
-      if indiceMo.isdigit() == False or int(indiceMo) > len(jugador.getTablero().getMonstruos()) or int(indiceMo)<=0:
+      if (not indiceMo.isdigit() )  or int(indiceMo) > len(jugador.getTablero().getMonstruos()) or int(indiceMo)<=0:
         print("No hay carta monstruo en ese indice")
       else:
         indiceMo = int(indiceMo)-1

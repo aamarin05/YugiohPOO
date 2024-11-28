@@ -1,4 +1,5 @@
 from Jugador import *
+from Tablero import *
 class Maquina:
   def __init__(self):
     self.__nombre = "Maquina"
@@ -19,7 +20,8 @@ class Maquina:
   def getTablero(self):
     return  self.__tablero 
 
-  def ordenarMano(self):
+#FUNCIONES DE LA MAQUINA PARA AGREGAR Y ORDENAR
+  def ordenarMano(self): #ORDENA LA MANO SEPARANDO LAS CARTAS EN SUS TIPOS
     for carta in self.getMano():
       cartasMonstruo = []
       cartasTrampa = []
@@ -32,49 +34,46 @@ class Maquina:
         cartasTrampa.append(carta)
     return cartasMonstruo, cartasMagicas, cartasTrampa
   
-  def obtenerMejoresCartas(self,listaCartas):
+  def obtenerMejoresCartas(self,listaCartas): #LAS 3 MEJORES CARTAS SON LAS QUE LA SUMA DE SU ATAQUE Y DEFENSA ES LA MAYOR ENTRE TODAS
     cartasOrdenadas = sorted(listaCartas, key=lambda carta: carta.getAtaque() + carta.getDefensa(), reverse=True)
     return cartasOrdenadas[:3]
+  
   def agregarMonstruoTablero(self,monstruo,modo):
-    if len(self.__tablero.getMonstruos()) < 3:
+    if len(self.__tablero.getMonstruos()) < 3: #SI LOS ESPACIOS DE MONSTRUO NO ESTÁN LLENOS
       if modo == "ataque":
         monstruo.modoAtaque()
       if modo == "defensa":
         monstruo.modoDefensa()
-      self.__tablero.getMonstruos().append(monstruo)
-
-  #FASE PRINCIPAL DE LA MÁQUINA
-  def mFasePrincipal(self):
-    monstruos, magicas, trampas = self.ordenarMano()
-    cartasMejores = self.obtenerMejoresCartas(monstruos)
-    for monstruo in cartasMejores:
-      if monstruo.getAtaque() < monstruo.getDefensa():
-        self.agregarMonstruoTablero(monstruo,"defensa")
-      else:
-        self.agregarMonstruoTablero(monstruo,"ataque")
-    for cartaM in magicas:
-      self.agregarEspecialesTablero(cartaM)
-    for cartaT in trampas:
-      self.agregarEspecialesTablero(cartaT)
+      self.getTablero().getMonstruos().append(monstruo)
+      self.getMano().remove(monstruo)
 
   def agregarEspecialesTablero(self,especial):
-    if len(self.__tablero.getEspeciales()) < 3:
-      self.__tablero.getEspeciales().append(especial)
+    if len(self.getTablero().getEspeciales()) < 3:
+      self.getTablero().getEspeciales().append(especial)
+
+#FASE PRINCIPAL DE LA MÁQUINA EN CADA TURNO SE LLAMA
+  def mFasePrincipal(self):
+    monstruos, magicas, trampas = self.ordenarMano() #ORDENA LA MANO SEPARANDO LAS CARTAS EN SUS TIPOS
+    cartasMejores = self.obtenerMejoresCartas(monstruos) #CARTAS MEJORES DE MONSTRUOS
+    for monstruo in cartasMejores: #QUE HACE CON LOS 3 MEJORES MONSTRUOS
+      if monstruo.getAtaque() < monstruo.getDefensa(): #SI SU DEFENSA ES MAYOR LA COLOCARÁ BOCA ABAJO
+        self.agregarMonstruoTablero(monstruo,"defensa")
+      else: #SI SU ATAQUE ES MAYOR O IGUAL A SU DEENSA, MODO ATAQUE
+        self.agregarMonstruoTablero(monstruo,"ataque")
+    for cartaT in trampas: #INTENTA PONER LAS CARTAS TRAMPA PRIMERO HASTA QUE YA NO HAYA EN LA MANO O NO SE PUEDAN COLOR
+      self.agregarEspecialesTablero(cartaT)
+    for cartaM in magicas: #INTENTA COLOCAR CARTAS MAGICAS AL TABLERO SI NO HAY CARTAS TRAMPA PRIMERO, HASTA QUE YA NO SE PUEDAN COLOCAR
+      self.agregarEspecialesTablero(cartaM)
       
 #COMO USA LA MAQUINA LAS CARTAS ESPECIALES
   def usarEspeciales(self):
     especiales = self.__tablero.getEspeciales()
     monstruos = self.__tablero.getMonstruos()
-    cartasUsadas =[]
+    cartasUsadas =[] #PARA NO INTENTAR USAR LA MISMA CARTA CON OTRO MONSTRUO
     for carta in especiales:
-      for monstruo in monstruos:
-        if carta not in cartasUsadas:
+      if carta not in cartasUsadas:#SI SE USA LA CARTA YA NO SE VUELVE A USAR
+        for monstruo in monstruos: #SI NO SE USA VA A TRATAR DE USARLA CON EL SIGUIENTE MONSTRUO
           if isinstance(carta,CartaMagica):
-            if monstruo.getTipo() == carta.getTipo():
-              carta.usar(monstruo)
-              cartasUsadas.append(carta)
-          if isinstance(carta, CartaTrampa):
-            if monstruo.getAtributo() == carta.getAtributo():
               carta.usar(monstruo)
               cartasUsadas.append(carta)
 

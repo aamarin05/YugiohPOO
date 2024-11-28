@@ -9,7 +9,8 @@ class Tablero:
     self.__cartasEspeciales = []
     self.__cartasJugador = [self.__cartasMonstruo, self.__cartasEspeciales]
 
-  def _str_(self):
+#TO STRING
+  def __str__(self):
     monstruos = []
     especiales = []
 
@@ -28,12 +29,12 @@ class Tablero:
 
     tablero = (
         f"Tablero\n"
-        f"Monstruo: [{monstruos[0]}] [{monstruos[1]}] [{monstruos[2]}]\n"
-        f"Especiales: [{especiales[0]}] [{especiales[1]}] [{especiales[2]}]"
+        f"Monstruo: \n[{monstruos[0]}] \n[{monstruos[1]}] \n[{monstruos[2]}]\n"
+        f"Especiales: \n[{especiales[0]}] \n[{especiales[1]}] \n[{especiales[2]}]"
     )
     return tablero
 
-
+#REMOVERCARTA 
   def removerCarta(self,carta):
     if isinstance(carta, CartaMonstruo):
       if carta in self.__cartasMonstruo:
@@ -42,6 +43,7 @@ class Tablero:
       if carta in self.__cartasEspeciales:
           self.__cartasEspeciales.remove(carta)
 
+#GETTERS Y SETTERS
   def getMonstruos(self):
     return self.__cartasMonstruo
   def getEspeciales(self):
