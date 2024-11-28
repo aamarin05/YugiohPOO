@@ -165,7 +165,7 @@ class Juego():
       print(self.__jugador)
       if self.__turnos == 1:
         #JUGADOR
-        pregunta = " "
+        pregunta = "  "
         while pregunta != "":
           pregunta = input("\nIngresa el número de tú acción \nOOCIÓN 1.- COLOCAR CARTA EN TABLERO \nOPCION 2.- ACTIVAR CARTA MAGICA O TRAMPA \nEnter.- para seguir: \n")
           pregunta = pregunta.lower()
