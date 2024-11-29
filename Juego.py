@@ -44,7 +44,7 @@ class Juego():
     print(f"\nTablero de {atacante.getNombre()}: {atacante.getTablero().__str__()}")
     print(f"\nTablero de {oponente.getNombre()}: {oponente.getTablero().__str__()}")
 
-  def batallaDirecta(cartaAtacante,oponente):
+  def batallaDirecta(self,cartaAtacante,oponente):
     puntos = cartaAtacante.getAtaque() - oponente.getPuntos()
     oponente.setPuntos(abs(puntos))
 
